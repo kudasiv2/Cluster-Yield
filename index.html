@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cluster Yield - Mesin Dollar Automatic di Blockchain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a1a2e; /* Dark Blue */
+            --secondary: #4e54c8; /* Purple */
+            --accent: #00d4ff; /* Cyan */
+            --text: #f8f9fa;
+            --dark: #0f0f1a;
+            --light: #e6e6e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 40px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 30px 0 15px;
+            color: var(--accent);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 20px 0 10px;
+            color: white;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+        }
+
+        .section {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section:nth-child(even) {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-image {
+            max-width: 800px;
+            margin: 30px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 30px auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .btn-accent {
+            background: linear-gradient(to right, var(--accent), #00a8ff);
+        }
+
+        .btn-bot {
+            background: linear-gradient(to right, #25D366, #128C7E);
+        }
+
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .plan-box {
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(78, 84, 200, 0.3);
+        }
+
+        .plan-box:hover {
+            transform: translateY(-5px);
+            background: rgba(26, 26, 46, 0.9);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent);
+        }
+
+        .plan-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .calculator {
+            background: rgba(26, 26, 46, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 30px auto;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(78, 84, 200, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(15, 15, 26, 0.7);
+            border: 1px solid rgba(78, 84, 200, 0.3);
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        select option {
+            background: var(--dark);
+        }
+
+        .result {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .referral-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .level-box {
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(78, 84, 200, 0.3);
+        }
+
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-box {
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(78, 84, 200, 0.3);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            background: rgba(26, 26, 46, 0.9);
+            border-color: var(--accent);
+        }
+
+        .media-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .media-box {
+            background: rgba(26, 26, 46, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(78, 84, 200, 0.3);
+        }
+
+        .media-box:hover {
+            transform: translateY(-5px);
+            background: rgba(26, 26, 46, 0.9);
+            border-color: var(--accent);
+        }
+
+        .join-steps {
+            max-width: 700px;
+            margin: 30px auto;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: var(--accent);
+            color: var(--dark);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .copy-link {
+            display: flex;
+            background: rgba(15, 15, 26, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            align-items: center;
+            border: 1px solid rgba(78, 84, 200, 0.3);
+        }
+
+        .copy-link input {
+            flex-grow: 1;
+            background: transparent;
+            border: none;
+            padding: 0 10px;
+        }
+
+        .copy-link button {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .copy-link button:hover {
+            background: white;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .question-box {
+            background: rgba(26, 26, 46, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px auto;
+            max-width: 600px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(78, 84, 200, 0.3);
+        }
+
+        .question-box textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(15, 15, 26, 0.7);
+            border: 1px solid rgba(78, 84, 200, 0.3);
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            min-height: 100px;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .plans-container, .referral-levels, .security-features, .media-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 40px 0;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="mesin-dollar" class="section">
+        <div class="container">
+            <h1>MESIN DOLLAR AUTOMATIC DI BLOCKCHAIN</h1>
+            <p class="subtitle">Launching 15 Juni 2025</p>
+            <p>Selamat datang di Cluster Yield — Platform investasi DeFi masa depan yang sepenuhnya otomatis, transparan, dan terdesentralisasi. 
+            Dibangun di atas fondasi kepercayaan dan didukung oleh teknologi blockchain yang tak tergoyahkan, setiap detik di platform ini adalah peluang untuk menumbuhkan aset Anda secara optimal dan konsisten.</p>
+            
+            <div class="hero-image">
+                <img src="https://files.catbox.moe/7gwpuf.png" alt="Cluster Yield Platform">
+            </div>
+            
+            <p>Cluster Yield adalah platform investasi digital yang menggabungkan kecerdasan buatan (AI) dan Smart Contract di jaringan BNB Smart Chain. 
+            Dikelola sepenuhnya oleh sistem otomatis tanpa campur tangan manusia, platform ini menghapus ketergantungan terhadap admin, meminimalkan risiko keterlambatan, dan memberikan jaminan transparansi penuh. 
+            Setiap transaksi diproses secara real-time melalui mekanisme blockchain yang aman, memungkinkan pengguna menikmati solusi investasi cerdas yang beroperasi 24/7 tanpa interupsi.</p>
+            
+            <p>Pahami sistem kerja Cluster Yield melalui video singkat berikut, dan temukan bagaimana teknologi AI dan kontrak pintar mengelola investasi Anda dengan presisi.</p>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/jsAFhVNmaXw?si=qgoxuZWlErzvdnb2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <p>Cluster Yield menghadirkan sistem otomatis yang mudah diakses, efisien, dan dirancang untuk semua kalangan — Dari pemula hingga investor berpengalaman. 
+            Dengan ekosistem yang dibangun di atas kontrak pintar, Anda dapat menikmati penghasilan pasif tanpa risiko manipulasi, tanpa KYC, dan tanpa proses rumit.</p>
+            
+            <a href="#join" class="btn btn-accent"><i class="fas fa-rocket"></i> Mulai Sekarang</a>
+        </div>
+    </header>
+    
+    <section id="plans" class="section">
+        <div class="container">
+            <h2><i class="fas fa-chart-line"></i> PLAN INVESTASI</h2>
+            <p class="subtitle">Pilih plan sesuai dengan tujuan dan strategi investasi Anda!</p>
+            
+            <div class="plans-container">
+                <div class="plan-box">
+                    <h3 class="plan-title"><i class="fas fa-seedling"></i> Beginner Plan</h3>
+                    <p><i class="fas fa-wallet"></i> Modal 10 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> Durasi 7 Hari</p>
+                    <p><i class="fas fa-coins"></i> Profit Harian 0.7%</p>
+                </div>
+                
+                <div class="plan-box">
+                    <h3 class="plan-title"><i class="fas fa-leaf"></i> Starter Plan</h3>
+                    <p><i class="fas fa-wallet"></i> Modal 50 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> Durasi 14 Hari</p>
+                    <p><i class="fas fa-coins"></i> Profit Harian 0.9%</p>
+                </div>
+                
+                <div class="plan-box">
+                    <h3 class="plan-title"><i class="fas fa-tree"></i> Basic Plan</h3>
+                    <p><i class="fas fa-wallet"></i> Modal 100 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> Durasi 30 Hari</p>
+                    <p><i class="fas fa-coins"></i> Profit Harian 1.1%</p>
+                </div>
+                
+                <div class="plan-box">
+                    <h3 class="plan-title"><i class="fas fa-mountain"></i> Standard Plan</h3>
+                    <p><i class="fas fa-wallet"></i> Modal 500 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> Durasi 60 Hari</p>
+                    <p><i class="fas fa-coins"></i> Profit Harian 1.3%</p>
+                </div>
+                
+                <div class="plan-box">
+                    <h3 class="plan-title"><i class="fas fa-rocket"></i> Advanced Plan</h3>
+                    <p><i class="fas fa-wallet"></i> Modal 2.500 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> Durasi 90 Hari</p>
+                    <p><i class="fas fa-coins"></i> Profit Harian 1.5%</p>
+                </div>
+                
+                <div class="plan-box">
+                    <h3 class="plan-title"><i class="fas fa-crown"></i> Premium Plan</h3>
+                    <p><i class="fas fa-wallet"></i> Modal 5.000 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> Durasi 120 Hari</p>
+                    <p><i class="fas fa-coins"></i> Profit Harian 2.0%</p>
+                </div>
+                
+                <div class="plan-box">
+                    <h3 class="plan-title"><i class="fas fa-gem"></i> Elite Plan</h3>
+                    <p><i class="fas fa-wallet"></i> Modal 10.000 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> Durasi 150 Hari</p>
+                    <p><i class="fas fa-coins"></i> Profit Harian 2.5%</p>
+                </div>
+                
+                <div class="plan-box">
+                    <h3 class="plan-title"><i class="fas fa-trophy"></i> Ultimate Plan</h3>
+                    <p><i class="fas fa-wallet"></i> Modal 25.000 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> Durasi 180 Hari</p>
+                    <p><i class="fas fa-coins"></i> Profit Harian 2.8%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <h2><i class="fas fa-calculator"></i> KALKULATOR PROFIT</h2>
+            <p class="subtitle">Lakukan simulasi hasil investasi Anda!</p>
+            
+            <div class="calculator">
+                <div class="form-group">
+                    <label for="plan-select"><i class="fas fa-list-ul"></i> Plan Investasi :</label>
+                    <select id="plan-select" onchange="updateCalculator()">
+                        <option value="">-- Pilih Plan --</option>
+                        <option value="beginner">Beginner Plan (0.7%)</option>
+                        <option value="starter">Starter Plan (0.9%)</option>
+                        <option value="basic">Basic Plan (1.1%)</option>
+                        <option value="standard">Standard Plan (1.3%)</option>
+                        <option value="advanced">Advanced Plan (1.5%)</option>
+                        <option value="premium">Premium Plan (2.0%)</option>
+                        <option value="elite">Elite Plan (2.5%)</option>
+                        <option value="ultimate">Ultimate Plan (2.8%)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="investment-amount"><i class="fas fa-money-bill-wave"></i> Modal Investasi (USDT) :</label>
+                    <input type="number" id="investment-amount" min="0" step="1" oninput="updateCalculator()" placeholder="Masukkan jumlah modal">
+                </div>
+                
+                <div class="form-group">
+                    <label for="daily-profit"><i class="fas fa-chart-bar"></i> Profit Harian :</label>
+                    <input type="text" id="daily-profit" readonly>
+                </div>
+                
+                <div class="result">
+                    <h4><i class="fas fa-coins"></i> Total Profit :</h4>
+                    <p id="total-profit">-</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="referral" class="section">
+        <div class="container">
+            <h2><i class="fas fa-users"></i> SISTEM REFERRAL</h2>
+            <p>Cluster Yield menghadirkan program referral progresif dengan potensi bonus hingga 71% dari hasil harian jaringan Anda. Bonus dihitung bukan dari modal awal, tetapi dari profit yang dihasilkan tim Anda!</p>
+            
+            <div class="referral-levels">
+                <div class="level-box">
+                    <h4><i class=""></i>Level 1</h4>
+                    <p>20%</p>
+                </div>
+                
+                <div class="level-box">
+                    <h4><i class=""></i>Level 2</h4>
+                    <p>10%</p>
+                </div>
+                
+                <div class="level-box">
+                    <h4><i class=""></i>Level 3 - 7</h4>
+                    <p>5%</p>
+                </div>
+                
+                <div class="level-box">
+                    <h4><i class=""></i>Level 8 - 10</h4>
+                    <p>3%</p>
+                </div>
+                
+                <div class="level-box">
+                    <h4><i class=""></i>Level 11 - 17</h4>
+                    <p>1%</p>
+                </div>
+            </div>
+            
+            <p>Semakin tinggi investasi Anda, semakin dalam level referral yang akan terbuka!</p>
+        </div>
+    </section>
+    
+    <section id="security" class="section">
+        <div class="container">
+            <h2><i class="fas fa-shield-alt"></i> SISTEM KEAMANAN</h2>
+            
+            <div class="security-features">
+                <div class="feature-box">
+                    <h3><i class="fas fa-network-wired"></i> Terdesentralisasi</h3>
+                    <p>Cluster Yield tidak dikendalikan oleh pihak manapun. Semua proses diatur oleh kontrak pintar yang tidak bisa dimodifikasi, memberikan kepastian dan otonomi penuh kepada pengguna.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <h3><i class="fab fa-ethereum"></i> Teknologi Blockchain</h3>
+                    <p>Dibangun di atas jaringan BNB Smart Chain yang terpercaya, memastikan setiap transaksi berjalan cepat, aman, dan transparan.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <h3><i class="fas fa-file-contract"></i> Kontrak Pintar Terverifikasi</h3>
+                    <p>Kode kontrak telah diverifikasi di BSCScan, terbuka untuk publik, dan telah diaudit oleh pihak independen.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <h3><i class="fas fa-eye"></i> Transparan</h3>
+                    <p>Semua data transaksi, pembagian profit, dan aktivitas referral dapat dilacak langsung melalui jaringan blockchain.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <h3><i class="fas fa-exchange-alt"></i> Peer-to-Peer (P2P)</h3>
+                    <p>Tanpa perantara. Semua interaksi keuangan berjalan langsung antara pengguna dan kontrak pintar.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="https://bscscan.com/address/0xa3512bD47D64fDA7AD9160A259f1cf95e35d0F61#code" class="btn" target="_blank"><i class="fas fa-search"></i> Cek Kontrak di BSC Scan</a>
+                <a href="https://hazecrypto.net/audit/ClusterYield" class="btn" target="_blank"><i class="fas fa-shield-alt"></i> Audit HazeCrypto</a>
+                <a href="https://dappaudit.pro/audits/cluster-yield-audit.html" class="btn" target="_blank"><i class="fas fa-shield-alt"></i> Audit DAppsAuditPro</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="join" class="section">
+        <div class="container">
+            <h2><i class="fas fa-sign-in-alt"></i> CARA BERGABUNG</h2>
+            
+            <div class="join-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <p><i class="fas fa-wallet"></i> Siapkan dompet crypto (seperti SafePal) yang mendukung BNB Smart Chain.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <p><i class="fas fa-money-bill-wave"></i> Danai dengan minimal 10 USDT + sedikit BNB sebagai gas fee.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <p><i class="fas fa-globe"></i> Buka browser DApps, lalu tempel link berikut :</p>
+                        <div class="copy-link">
+                            <input type="text" id="ref-link" value="https://clusteryield.com/ref/0x0393405d54bfa834DD3B7bCBDD338a3fE35DB308" readonly>
+                            <button onclick="copyRefLink()"><i class="fas fa-copy"></i> Salin</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <p><i class="fas fa-plug"></i> Hubungkan dompet Anda ke Cluster Yield.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <p><i class="fas fa-list-ul"></i> Pilih plan, masukkan jumlah modal, dan konfirmasi.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <p><i class="fas fa-coins"></i> Profit harian akan masuk otomatis ke dashboard Anda.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-container" style="margin-top: 40px;">
+                <iframe src="https://www.youtube.com/embed/6n4pSCeJ5Fg?si=WoNoUUCu-Hlo2lSB" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="https://t.me/ClusterYieldBot" class="btn btn-bot" target="_blank"><i class="fas fa-robot"></i> Hubungi Bot Pendaftaran</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="media" class="section">
+        <div class="container">
+            <h2><i class="fas fa-newspaper"></i> LIPUTAN MEDIA</h2>
+            <p class="subtitle">Kami telah diliput oleh media crypto global!</p>
+            
+            <div class="media-container">
+                <div class="media-box">
+                    <h3><i class="fas fa-newspaper"></i> Bitcoin Insider</h3>
+                    <p>"Platform DeFi AI yang mengirim USDT setiap hari."</p>
+                    <a href="https://www.bitcoininsider.org/article/276538/clusteryieldcom-officially-launches-ai-powered-defi-platform-delivering-daily-usdt" class="btn" target="_blank"><i class="fas fa-newspaper"></i> Baca Artikel</a>
+                </div>
+                
+                <div class="media-box">
+                    <h3><i class="fas fa-newspaper"></i> The Bit Times</h3>
+                    <p>"Pendapatan pasif tanpa KYC, tanpa trading, hanya dengan USDT."</p>
+                    <a href="https://thebittimes.com/clusteryield-com-launches-to-deliver-truly-passive-ai-crypto-income-no-trading-no-kyc-just-usdt-daily-tbt116613.html" class="btn" target="_blank"><i class="fas fa-newspaper"></i> Baca Artikel</a>
+                </div>
+                
+                <div class="media-box">
+                    <h3><i class="fas fa-newspaper"></i> Tech Announcer</h3>
+                    <p>"Solusi AI untuk passive income crypto."</p>
+                    <a href="https://techannouncer.com/clusteryield-com-launches-to-deliver-truly-passive-ai-crypto-income-no-trading-no-kyc-just-usdt-daily/" class="btn" target="_blank"><i class="fas fa-newspaper"></i> Baca Artikel</a>
+                </div>
+                
+                <div class="media-box">
+                    <h3><i class="fas fa-newspaper"></i> Crypto Times</h3>
+                    <p>"Platform berbasis AI untuk pendapatan crypto otomatis."</p>
+                    <a href="https://www.cryptotimes.io/press-release/clusteryield-com-ai-driven-platform-for-passive-crypto-earnings/" class="btn" target="_blank"><i class="fas fa-newspaper"></i> Baca Artikel</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="faq" class="section">
+        <div class="container">
+            <h2><i class="fas fa-question-circle"></i> TANYA JAWAB UMUM</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question"><i class="fas fa-question"></i> Berapa minimum investasi?</div>
+                <div class="faq-answer"><i class="fas fa-check"></i> Minimal 10 USDT + sedikit BNB untuk biaya jaringan.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question"><i class="fas fa-question"></i> Apakah ada batas maksimal?</div>
+                <div class="faq-answer"><i class="fas fa-check"></i> Tidak ada. Investasi dapat disesuaikan dengan strategi Anda.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question"><i class="fas fa-question"></i> Bagaimana cara menghitung profit harian?</div>
+                <div class="faq-answer"><i class="fas fa-check"></i> Profit dihitung otomatis berdasarkan plan & modal melalui sistem AI.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question"><i class="fas fa-question"></i> Bisa memiliki beberapa plan aktif?</div>
+                <div class="faq-answer"><i class="fas fa-check"></i> Bisa. Setiap plan berjalan independen.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question"><i class="fas fa-question"></i> Bagaimana sistem referral bekerja?</div>
+                <div class="faq-answer"><i class="fas fa-check"></i> Bonus diberikan dari hasil profit harian tim Anda, hingga 17 level.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question"><i class="fas fa-question"></i> Apakah platform ini aman?</div>
+                <div class="faq-answer"><i class="fas fa-check"></i> Cluster Yield telah diaudit secara menyeluruh dan menggunakan kontrak pintar terverifikasi.</div>
+            </div>
+            
+            <div class="question-box">
+                <h3><i class="fas fa-inbox"></i> Ada pertanyaan lain?</h3>
+                <p>Ketik pertanyaan Anda di bawah ini :</p>
+                <textarea id="user-question" placeholder="Tulis pertanyaan Anda di sini..."></textarea>
+                <div style="text-align: center;">
+                    <a href="#" id="whatsapp-btn" class="btn btn-accent"><i class="fab fa-whatsapp"></i> Kirim ke WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="community" class="section">
+        <div class="container">
+            <h2><i class="fas fa-users"></i> KOMUNITAS & EDUKASI</h2>
+            <p class="subtitle">Bergabunglah bersama ribuan investor lain dan dapatkan informasi edukatif secara berkala!</p>
+            
+            <div class="social-buttons">
+                <a href="https://chat.whatsapp.com/JztnkdNgSIs2BAwM3f84ZW" class="btn" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Group Ke-5</a>
+                <a href="https://t.me/ClusterYieldOfficial" class="btn" target="_blank"><i class="fab fa-telegram"></i> Channel Informasi</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="support" class="section">
+        <div class="container">
+            <h2><i class="fas fa-headset"></i> DUKUNGAN & KONTAK</h2>
+            <p class="subtitle">Kami siap membantu!</p>
+            
+            <div class="social-buttons">
+                <a href="https://wa.me/+6282380958611?text=Pandu+Join+Cluster+Yield" class="btn" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Support</a>
+                <a href="https://t.me/ChoexoDevBot?start=welcome" class="btn" target="_blank"><i class="fab fa-telegram"></i> Telegram Support</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="section">
+        <div class="container">
+            <p>Wujudkan masa depan keuangan Anda dengan sistem otomatis yang bekerja tanpa lelah.<br>
+            Satu langkah kecil hari ini, penghasilan pasif selamanya.</p>
+            
+            <a href="#join" class="btn btn-accent" style="margin-top: 20px;"><i class="fas fa-rocket"></i> Mulai Sekarang</a>
+            
+            <div class="footer-links">
+                <a href="#mesin-dollar"><i class="fas fa-info-circle"></i> Penjelasan</a>
+                <a href="#plans"><i class="fas fa-chart-line"></i> Plan Investasi</a>
+                <a href="#referral"><i class="fas fa-users"></i> Sistem Referral</a>
+                <a href="#security"><i class="fas fa-shield-alt"></i> Sistem Keamanan</a>
+                <a href="#join"><i class="fas fa-sign-in-alt"></i> Cara Bergabung</a>
+                <a href="#media"><i class="fas fa-newspaper"></i> Liputan Media</a>
+                <a href="#faq"><i class="fas fa-question-circle"></i> Tanya Jawab Umum</a>
+                <a href="#community"><i class="fas fa-users"></i> Komunitas & Edukasi</a>
+                <a href="#support"><i class="fas fa-headset"></i> Dukungan & Kontak</a>
+            </div>
+            
+            <p style="margin-top: 30px;">© 2025 Cluster Yield — All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Plan minimum values
+        const planMinimums = {
+            'beginner': 10,
+            'starter': 50,
+            'basic': 100,
+            'standard': 500,
+            'advanced': 2500,
+            'premium': 5000,
+            'elite': 10000,
+            'ultimate': 25000
+        };
+
+        // Plan durations
+        const planDurations = {
+            'beginner': 7,
+            'starter': 14,
+            'basic': 30,
+            'standard': 60,
+            'advanced': 90,
+            'premium': 120,
+            'elite': 150,
+            'ultimate': 180
+        };
+
+        // Plan percentages
+        const planPercentages = {
+            'beginner': 0.7,
+            'starter': 0.9,
+            'basic': 1.1,
+            'standard': 1.3,
+            'advanced': 1.5,
+            'premium': 2.0,
+            'elite': 2.5,
+            'ultimate': 2.8
+        };
+
+        // Calculator function
+        function updateCalculator() {
+            const planSelect = document.getElementById('plan-select');
+            const amountInput = document.getElementById('investment-amount');
+            const dailyProfitInput = document.getElementById('daily-profit');
+            const totalProfitDisplay = document.getElementById('total-profit');
+            
+            if (!planSelect.value) {
+                dailyProfitInput.value = '';
+                totalProfitDisplay.textContent = '-';
+                amountInput.setCustomValidity('');
+                return;
+            }
+            
+            const selectedPlan = planSelect.value;
+            const minAmount = planMinimums[selectedPlan];
+            
+            amountInput.min = minAmount;
+            amountInput.placeholder = `Min. ${minAmount} USDT`;
+            
+            const amount = parseFloat(amountInput.value);
+            
+            if (isNaN(amount) {
+                amountInput.setCustomValidity('Masukkan jumlah yang valid');
+                dailyProfitInput.value = '';
+                totalProfitDisplay.textContent = '-';
+                return;
+            } else if (amount < minAmount) {
+                amountInput.setCustomValidity(`Minimum investasi untuk plan ini adalah ${minAmount} USDT`);
+                dailyProfitInput.value = '';
+                totalProfitDisplay.textContent = '-';
+                return;
+            } else {
+                amountInput.setCustomValidity('');
+            }
+            
+            const dailyPercentage = planPercentages[selectedPlan];
+            const duration = planDurations[selectedPlan];
+            
+            const dailyProfit = (amount * dailyPercentage / 100).toFixed(2);
+            const totalProfit = (dailyProfit * duration).toFixed(2);
+            
+            dailyProfitInput.value = `${dailyPercentage}% = ${dailyProfit} USDT/hari`;
+            totalProfitDisplay.textContent = `${totalProfit} USDT (${duration} hari)`;
+        }
+        
+        // Copy referral link function
+        function copyRefLink() {
+            const refLink = document.getElementById('ref-link');
+            refLink.select();
+            refLink.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            
+            const copyButton = refLink.nextElementSibling;
+            const originalText = copyButton.innerHTML;
+            copyButton.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
+            
+            setTimeout(() => {
+                copyButton.innerHTML = originalText;
+            }, 2000);
+        }
+        
+        // WhatsApp question function
+        document.getElementById('whatsapp-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const question = document.getElementById('user-question').value;
+            if (question.trim() === '') {
+                alert('Silakan tulis pertanyaan Anda terlebih dahulu.');
+                return;
+            }
+            
+            const encodedQuestion = encodeURIComponent(question);
+            window.open(`https://wa.me/+6282380958611?text=${encodedQuestion}`, '_blank');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
