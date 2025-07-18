@@ -324,6 +324,7 @@
             background: transparent;
             border: none;
             padding: 0 10px;
+            color: white;
         }
 
         .copy-link button {
@@ -777,7 +778,7 @@
                 <p>Ketik pertanyaan Anda di bawah ini :</p>
                 <textarea id="user-question" placeholder="Tulis pertanyaan Anda di sini..."></textarea>
                 <div style="text-align: center;">
-                    <a href="#" id="whatsapp-btn" class="btn btn-accent"><i class="fab fa-whatsapp"></i> Kirim ke WhatsApp</a>
+                    <button id="whatsapp-btn" class="btn btn-accent" onclick="sendWhatsAppMessage()"><i class="fab fa-whatsapp"></i> Kirim ke WhatsApp</button>
                 </div>
             </div>
         </div>
@@ -889,7 +890,7 @@
             
             const amount = parseFloat(amountInput.value);
             
-            if (isNaN(amount) {
+            if (isNaN(amount)) {
                 amountInput.setCustomValidity('Masukkan jumlah yang valid');
                 dailyProfitInput.value = '';
                 totalProfitDisplay.textContent = '-';
@@ -920,6 +921,7 @@
             refLink.setSelectionRange(0, 99999);
             document.execCommand('copy');
             
+            // Show feedback to user
             const copyButton = refLink.nextElementSibling;
             const originalText = copyButton.innerHTML;
             copyButton.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
@@ -927,11 +929,13 @@
             setTimeout(() => {
                 copyButton.innerHTML = originalText;
             }, 2000);
+            
+            // Optional: Show alert
+            alert('Link referral telah disalin ke clipboard!');
         }
         
         // WhatsApp question function
-        document.getElementById('whatsapp-btn').addEventListener('click', function(e) {
-            e.preventDefault();
+        function sendWhatsAppMessage() {
             const question = document.getElementById('user-question').value;
             if (question.trim() === '') {
                 alert('Silakan tulis pertanyaan Anda terlebih dahulu.');
@@ -940,7 +944,7 @@
             
             const encodedQuestion = encodeURIComponent(question);
             window.open(`https://wa.me/+6282380958611?text=${encodedQuestion}`, '_blank');
-        });
+        }
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -958,6 +962,11 @@
                 }
             });
         });
+
+        // Initialize calculator on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCalculator();
+        });
     </script>
 </body>
-</html>
+    </html>
