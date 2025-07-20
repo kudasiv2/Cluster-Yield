@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cluster Yield - Mesin Dollar Automatic di Blockchain</title>
+    <title>Cluster Yield - Automatic Dollar Machine on Blockchain</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
     <style>
@@ -71,6 +71,82 @@
             height: 35px;
             width: auto;
             filter: drop-shadow(0 0 10px rgba(129, 140, 248, 0.3));
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(30, 27, 75, 0.4);
+            color: var(--text-light);
+            border: 1px solid rgba(129, 140, 248, 0.3);
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .language-btn:hover {
+            background: rgba(30, 27, 75, 0.6);
+            border-color: var(--accent-light);
+        }
+
+        .language-btn img {
+            width: 20px;
+            height: auto;
+            border-radius: 2px;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: rgba(10, 14, 23, 0.95);
+            border: 1px solid rgba(129, 140, 248, 0.3);
+            border-radius: 8px;
+            padding: 10px 0;
+            min-width: 160px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            display: none;
+        }
+
+        .language-dropdown.show {
+            display: block;
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .language-option:hover {
+            background: rgba(129, 140, 248, 0.1);
+            color: var(--accent-light);
+        }
+
+        .language-option img {
+            width: 20px;
+            height: auto;
+            border-radius: 2px;
         }
 
         .menu-toggle {
@@ -770,6 +846,10 @@
             .nav-links {
                 display: none;
             }
+            
+            .language-selector {
+                margin-right: 15px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -808,6 +888,14 @@
             
             .mobile-menu {
                 width: 240px;
+            }
+            
+            .language-btn span {
+                display: none;
+            }
+            
+            .language-btn {
+                padding: 8px;
             }
         }
 
@@ -868,20 +956,48 @@
             <img src="https://files.catbox.moe/7gwpuf.png" alt="Cluster Yield Logo">
         </div>
         
-        <div class="menu-toggle" id="mobile-menu-button">
-            <i class="fas fa-bars"></i>
+        <div class="nav-right">
+            <div class="language-selector">
+                <button class="language-btn">
+                    <img src="https://flagcdn.com/w20/id.png" alt="Indonesia">
+                    <span>Indonesia</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="language-dropdown" id="language-dropdown">
+                    <a href="#" class="language-option" data-lang="id">
+                        <img src="https://flagcdn.com/w20/id.png" alt="Indonesia">
+                        <span>Indonesia</span>
+                    </a>
+                    <a href="#" class="language-option" data-lang="en">
+                        <img src="https://flagcdn.com/w20/gb.png" alt="English">
+                        <span>English</span>
+                    </a>
+                    <a href="#" class="language-option" data-lang="fr">
+                        <img src="https://flagcdn.com/w20/fr.png" alt="Français">
+                        <span>Français</span>
+                    </a>
+                    <a href="#" class="language-option" data-lang="ar">
+                        <img src="https://flagcdn.com/w20/sa.png" alt="العربية">
+                        <span>العربية</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="menu-toggle" id="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
         
         <div class="nav-links">
-            <a href="#mesin-dollar"><i class="fas fa-info-circle"></i> Penjelasan</a>
-            <a href="#plans"><i class="fas fa-coins"></i> Plan Investasi</a>
-            <a href="#referral"><i class="fas fa-users"></i> Sistem Referral</a>
-            <a href="#security"><i class="fas fa-shield-alt"></i> Sistem Keamanan</a>
-            <a href="#join"><i class="fas fa-sign-in-alt"></i> Cara Bergabung</a>
-            <a href="#media"><i class="fas fa-newspaper"></i> Liputan Media</a>
-            <a href="#faq"><i class="fas fa-question-circle"></i> Tanya Jawab Umum</a>
-            <a href="#community"><i class="fas fa-users"></i> Komunitas & Edukasi</a>
-            <a href="#support"><i class="fas fa-headset"></i> Dukungan & Kontak</a>
+            <a href="#mesin-dollar" class="nav-link" data-key="nav.about"><i class="fas fa-info-circle"></i> <span>Penjelasan</span></a>
+            <a href="#plans" class="nav-link" data-key="nav.plans"><i class="fas fa-coins"></i> <span>Plan Investasi</span></a>
+            <a href="#referral" class="nav-link" data-key="nav.referral"><i class="fas fa-users"></i> <span>Sistem Referral</span></a>
+            <a href="#security" class="nav-link" data-key="nav.security"><i class="fas fa-shield-alt"></i> <span>Sistem Keamanan</span></a>
+            <a href="#join" class="nav-link" data-key="nav.join"><i class="fas fa-sign-in-alt"></i> <span>Cara Bergabung</span></a>
+            <a href="#media" class="nav-link" data-key="nav.media"><i class="fas fa-newspaper"></i> <span>Liputan Media</span></a>
+            <a href="#faq" class="nav-link" data-key="nav.faq"><i class="fas fa-question-circle"></i> <span>Tanya Jawab Umum</span></a>
+            <a href="#community" class="nav-link" data-key="nav.community"><i class="fas fa-users"></i> <span>Komunitas & Edukasi</span></a>
+            <a href="#support" class="nav-link" data-key="nav.support"><i class="fas fa-headset"></i> <span>Dukungan & Kontak</span></a>
         </div>
     </nav>
     
@@ -890,96 +1006,96 @@
         <div class="close-menu" id="close-menu">
             <i class="fas fa-times"></i>
         </div>
-        <a href="#mesin-dollar"><i class="fas fa-info-circle"></i> Penjelasan</a>
-        <a href="#plans"><i class="fas fa-coins"></i> Plan Investasi</a>
-        <a href="#referral"><i class="fas fa-users"></i> Sistem Referral</a>
-        <a href="#security"><i class="fas fa-shield-alt"></i> Sistem Keamanan</a>
-        <a href="#join"><i class="fas fa-sign-in-alt"></i> Cara Bergabung</a>
-        <a href="#media"><i class="fas fa-newspaper"></i> Liputan Media</a>
-        <a href="#faq"><i class="fas fa-question-circle"></i> Tanya Jawab Umum</a>
-        <a href="#community"><i class="fas fa-users"></i> Komunitas & Edukasi</a>
-        <a href="#support"><i class="fas fa-headset"></i> Dukungan & Kontak</a>
+        <a href="#mesin-dollar" class="nav-link" data-key="nav.about"><i class="fas fa-info-circle"></i> <span>Penjelasan</span></a>
+        <a href="#plans" class="nav-link" data-key="nav.plans"><i class="fas fa-coins"></i> <span>Plan Investasi</span></a>
+        <a href="#referral" class="nav-link" data-key="nav.referral"><i class="fas fa-users"></i> <span>Sistem Referral</span></a>
+        <a href="#security" class="nav-link" data-key="nav.security"><i class="fas fa-shield-alt"></i> <span>Sistem Keamanan</span></a>
+        <a href="#join" class="nav-link" data-key="nav.join"><i class="fas fa-sign-in-alt"></i> <span>Cara Bergabung</span></a>
+        <a href="#media" class="nav-link" data-key="nav.media"><i class="fas fa-newspaper"></i> <span>Liputan Media</span></a>
+        <a href="#faq" class="nav-link" data-key="nav.faq"><i class="fas fa-question-circle"></i> <span>Tanya Jawab Umum</span></a>
+        <a href="#community" class="nav-link" data-key="nav.community"><i class="fas fa-users"></i> <span>Komunitas & Edukasi</span></a>
+        <a href="#support" class="nav-link" data-key="nav.support"><i class="fas fa-headset"></i> <span>Dukungan & Kontak</span></a>
     </div>
 
     <header id="mesin-dollar" class="section">
         <div class="container">
             <div class="hero-content">
-                <h1>MESIN DOLLAR AUTOMATIC DI BLOCKCHAIN</h1>
-                <p class="subtitle">Launching 15 Juni 2025</p>
+                <h1 data-key="header.title">MESIN DOLLAR AUTOMATIC DI BLOCKCHAIN</h1>
+                <p class="subtitle" data-key="header.subtitle">Launching 15 Juni 2025</p>
                 
-                <h3><i class="fas fa-info-circle"></i> APA ITU CLUSTER YIELD?</h3>
-                <p>Cluster Yield adalah platform investasi digital yang menggabungkan kecerdasan buatan (AI) dan Smart Contract di jaringan BNB Smart Chain. 
+                <h3><i class="fas fa-info-circle"></i> <span data-key="header.whatIs">APA ITU CLUSTER YIELD?</span></h3>
+                <p data-key="header.description">Cluster Yield adalah platform investasi digital yang menggabungkan kecerdasan buatan (AI) dan Smart Contract di jaringan BNB Smart Chain. 
                 Dikelola sepenuhnya oleh sistem otomatis tanpa campur tangan manusia, platform ini menghapus ketergantungan terhadap admin, meminimalkan risiko keterlambatan, dan memberikan jaminan transparansi penuh.</p>
                 
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/jsAFhVNmaXw?si=qgoxuZWlErzvdnb2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 
-                <a href="#join" class="btn btn-accent"><i class="fas fa-rocket"></i> Mulai Sekarang</a>
+                <a href="#join" class="btn btn-accent"><i class="fas fa-rocket"></i> <span data-key="header.startNow">Mulai Sekarang</span></a>
             </div>
         </div>
     </header>
     
     <section id="plans" class="section">
         <div class="container">
-            <h2><i class="fas fa-coins"></i> PLAN INVESTASI</h2>
-            <p class="subtitle">Pilih plan sesuai dengan tujuan dan strategi investasi Anda!</p>
+            <h2><i class="fas fa-coins"></i> <span data-key="plans.title">PLAN INVESTASI</span></h2>
+            <p class="subtitle" data-key="plans.subtitle">Pilih plan sesuai dengan tujuan dan strategi investasi Anda!</p>
             
             <div class="plans-container">
                 <div class="plan-box">
-                    <h3 class="plan-title"><i class="fas fa-seedling"></i> Beginner Plan</h3>
-                    <p><i class="fas fa-wallet"></i> Modal 10 USDT</p>
-                    <p><i class="far fa-calendar-alt"></i> Durasi 7 Hari</p>
-                    <p><i class="fas fa-chart-line"></i> Profit Harian 0.7%</p>
+                    <h3 class="plan-title"><i class="fas fa-seedling"></i> <span data-key="plans.beginner">Beginner Plan</span></h3>
+                    <p><i class="fas fa-wallet"></i> <span data-key="plans.capital">Modal</span> 10 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> <span data-key="plans.duration">Durasi</span> 7 <span data-key="plans.days">Hari</span></p>
+                    <p><i class="fas fa-chart-line"></i> <span data-key="plans.profit">Profit Harian</span> 0.7%</p>
                 </div>
                 
                 <div class="plan-box">
-                    <h3 class="plan-title"><i class="fas fa-leaf"></i> Starter Plan</h3>
-                    <p><i class="fas fa-wallet"></i> Modal 50 USDT</p>
-                    <p><i class="far fa-calendar-alt"></i> Durasi 14 Hari</p>
-                    <p><i class="fas fa-chart-line"></i> Profit Harian 0.9%</p>
+                    <h3 class="plan-title"><i class="fas fa-leaf"></i> <span data-key="plans.starter">Starter Plan</span></h3>
+                    <p><i class="fas fa-wallet"></i> <span data-key="plans.capital">Modal</span> 50 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> <span data-key="plans.duration">Durasi</span> 14 <span data-key="plans.days">Hari</span></p>
+                    <p><i class="fas fa-chart-line"></i> <span data-key="plans.profit">Profit Harian</span> 0.9%</p>
                 </div>
                 
                 <div class="plan-box">
-                    <h3 class="plan-title"><i class="fas fa-tree"></i> Basic Plan</h3>
-                    <p><i class="fas fa-wallet"></i> Modal 100 USDT</p>
-                    <p><i class="far fa-calendar-alt"></i> Durasi 30 Hari</p>
-                    <p><i class="fas fa-chart-line"></i> Profit Harian 1.1%</p>
+                    <h3 class="plan-title"><i class="fas fa-tree"></i> <span data-key="plans.basic">Basic Plan</span></h3>
+                    <p><i class="fas fa-wallet"></i> <span data-key="plans.capital">Modal</span> 100 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> <span data-key="plans.duration">Durasi</span> 30 <span data-key="plans.days">Hari</span></p>
+                    <p><i class="fas fa-chart-line"></i> <span data-key="plans.profit">Profit Harian</span> 1.1%</p>
                 </div>
                 
                 <div class="plan-box">
-                    <h3 class="plan-title"><i class="fas fa-mountain"></i> Standard Plan</h3>
-                    <p><i class="fas fa-wallet"></i> Modal 500 USDT</p>
-                    <p><i class="far fa-calendar-alt"></i> Durasi 60 Hari</p>
-                    <p><i class="fas fa-chart-line"></i> Profit Harian 1.3%</p>
+                    <h3 class="plan-title"><i class="fas fa-mountain"></i> <span data-key="plans.standard">Standard Plan</span></h3>
+                    <p><i class="fas fa-wallet"></i> <span data-key="plans.capital">Modal</span> 500 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> <span data-key="plans.duration">Durasi</span> 60 <span data-key="plans.days">Hari</span></p>
+                    <p><i class="fas fa-chart-line"></i> <span data-key="plans.profit">Profit Harian</span> 1.3%</p>
                 </div>
                 
                 <div class="plan-box">
-                    <h3 class="plan-title"><i class="fas fa-hiking"></i> Advanced Plan</h3>
-                    <p><i class="fas fa-wallet"></i> Modal 2.500 USDT</p>
-                    <p><i class="far fa-calendar-alt"></i> Durasi 90 Hari</p>
-                    <p><i class="fas fa-chart-line"></i> Profit Harian 1.5%</p>
+                    <h3 class="plan-title"><i class="fas fa-hiking"></i> <span data-key="plans.advanced">Advanced Plan</span></h3>
+                    <p><i class="fas fa-wallet"></i> <span data-key="plans.capital">Modal</span> 2.500 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> <span data-key="plans.duration">Durasi</span> 90 <span data-key="plans.days">Hari</span></p>
+                    <p><i class="fas fa-chart-line"></i> <span data-key="plans.profit">Profit Harian</span> 1.5%</p>
                 </div>
                 
                 <div class="plan-box">
-                    <h3 class="plan-title"><i class="fas fa-crown"></i> Premium Plan</h3>
-                    <p><i class="fas fa-wallet"></i> Modal 5.000 USDT</p>
-                    <p><i class="far fa-calendar-alt"></i> Durasi 120 Hari</p>
-                    <p><i class="fas fa-chart-line"></i> Profit Harian 2.0%</p>
+                    <h3 class="plan-title"><i class="fas fa-crown"></i> <span data-key="plans.premium">Premium Plan</span></h3>
+                    <p><i class="fas fa-wallet"></i> <span data-key="plans.capital">Modal</span> 5.000 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> <span data-key="plans.duration">Durasi</span> 120 <span data-key="plans.days">Hari</span></p>
+                    <p><i class="fas fa-chart-line"></i> <span data-key="plans.profit">Profit Harian</span> 2.0%</p>
                 </div>
                 
                 <div class="plan-box">
-                    <h3 class="plan-title"><i class="fas fa-gem"></i> Elite Plan</h3>
-                    <p><i class="fas fa-wallet"></i> Modal 10.000 USDT</p>
-                    <p><i class="far fa-calendar-alt"></i> Durasi 150 Hari</p>
-                    <p><i class="fas fa-chart-line"></i> Profit Harian 2.5%</p>
+                    <h3 class="plan-title"><i class="fas fa-gem"></i> <span data-key="plans.elite">Elite Plan</span></h3>
+                    <p><i class="fas fa-wallet"></i> <span data-key="plans.capital">Modal</span> 10.000 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> <span data-key="plans.duration">Durasi</span> 150 <span data-key="plans.days">Hari</span></p>
+                    <p><i class="fas fa-chart-line"></i> <span data-key="plans.profit">Profit Harian</span> 2.5%</p>
                 </div>
                 
                 <div class="plan-box">
-                    <h3 class="plan-title"><i class="fas fa-trophy"></i> Ultimate Plan</h3>
-                    <p><i class="fas fa-wallet"></i> Modal 25.000 USDT</p>
-                    <p><i class="far fa-calendar-alt"></i> Durasi 180 Hari</p>
-                    <p><i class="fas fa-chart-line"></i> Profit Harian 2.8%</p>
+                    <h3 class="plan-title"><i class="fas fa-trophy"></i> <span data-key="plans.ultimate">Ultimate Plan</span></h3>
+                    <p><i class="fas fa-wallet"></i> <span data-key="plans.capital">Modal</span> 25.000 USDT</p>
+                    <p><i class="far fa-calendar-alt"></i> <span data-key="plans.duration">Durasi</span> 180 <span data-key="plans.days">Hari</span></p>
+                    <p><i class="fas fa-chart-line"></i> <span data-key="plans.profit">Profit Harian</span> 2.8%</p>
                 </div>
             </div>
         </div>
@@ -987,39 +1103,39 @@
     
     <section class="section">
         <div class="container">
-            <h2><i class="fas fa-calculator"></i> KALKULATOR PROFIT</h2>
-            <p class="subtitle">Lakukan simulasi hasil investasi Anda!</p>
+            <h2><i class="fas fa-calculator"></i> <span data-key="calculator.title">KALKULATOR PROFIT</span></h2>
+            <p class="subtitle" data-key="calculator.subtitle">Lakukan simulasi hasil investasi Anda!</p>
             
             <div class="calculator">
                 <div class="form-group">
-                    <label for="plan-select">Plan Investasi :</label>
+                    <label for="plan-select" data-key="calculator.plan">Plan Investasi :</label>
                     <select id="plan-select">
-                        <option value="">-- Pilih Plan --</option>
-                        <option value="beginner">Beginner Plan (0.7%)</option>
-                        <option value="starter">Starter Plan (0.9%)</option>
-                        <option value="basic">Basic Plan (1.1%)</option>
-                        <option value="standard">Standard Plan (1.3%)</option>
-                        <option value="advanced">Advanced Plan (1.5%)</option>
-                        <option value="premium">Premium Plan (2.0%)</option>
-                        <option value="elite">Elite Plan (2.5%)</option>
-                        <option value="ultimate">Ultimate Plan (2.8%)</option>
+                        <option value="" data-key="calculator.selectPlan">-- Pilih Plan --</option>
+                        <option value="beginner" data-key="plans.beginner">Beginner Plan (0.7%)</option>
+                        <option value="starter" data-key="plans.starter">Starter Plan (0.9%)</option>
+                        <option value="basic" data-key="plans.basic">Basic Plan (1.1%)</option>
+                        <option value="standard" data-key="plans.standard">Standard Plan (1.3%)</option>
+                        <option value="advanced" data-key="plans.advanced">Advanced Plan (1.5%)</option>
+                        <option value="premium" data-key="plans.premium">Premium Plan (2.0%)</option>
+                        <option value="elite" data-key="plans.elite">Elite Plan (2.5%)</option>
+                        <option value="ultimate" data-key="plans.ultimate">Ultimate Plan (2.8%)</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="investment-amount">Modal Investasi (USDT) :</label>
-                    <input type="number" id="investment-amount" min="0" step="1" placeholder="Masukkan jumlah modal">
+                    <label for="investment-amount" data-key="calculator.investment">Modal Investasi (USDT) :</label>
+                    <input type="number" id="investment-amount" min="0" step="1" data-key="calculator.enterAmount" data-placeholder="Masukkan jumlah modal">
                 </div>
                 
                 <div class="form-group">
-                    <label for="daily-profit">Profit Harian :</label>
+                    <label for="daily-profit" data-key="calculator.dailyProfit">Profit Harian :</label>
                     <input type="text" id="daily-profit" readonly>
                 </div>
                 
-                <button class="btn btn-calculate" onclick="calculateProfit()"><i class="fas fa-calculator"></i> Hitung Profit</button>
+                <button class="btn btn-calculate" onclick="calculateProfit()"><i class="fas fa-calculator"></i> <span data-key="calculator.calculate">Hitung Profit</span></button>
                 
                 <div class="result">
-                    <h4>Total Profit :</h4>
+                    <h4 data-key="calculator.totalProfit">Total Profit :</h4>
                     <p id="total-profit">-</p>
                 </div>
             </div>
@@ -1028,82 +1144,82 @@
     
     <section id="referral" class="section">
         <div class="container">
-            <h2><i class="fas fa-users"></i> SISTEM REFERRAL</h2>
-            <p>Cluster Yield menghadirkan program referral progresif dengan potensi bonus hingga 71% dari hasil harian jaringan Anda. Bonus dihitung bukan dari modal awal, tetapi dari profit yang dihasilkan tim Anda!</p>
+            <h2><i class="fas fa-users"></i> <span data-key="referral.title">SISTEM REFERRAL</span></h2>
+            <p data-key="referral.description">Cluster Yield menghadirkan program referral progresif dengan potensi bonus hingga 71% dari hasil harian jaringan Anda. Bonus dihitung bukan dari modal awal, tetapi dari profit yang dihasilkan tim Anda!</p>
             
             <div class="referral-levels">
                 <div class="level-box">
-                    <h4>Level 1</h4>
+                    <h4 data-key="referral.level1">Level 1</h4>
                     <p>20%</p>
                 </div>
                 
                 <div class="level-box">
-                    <h4>Level 2</h4>
+                    <h4 data-key="referral.level2">Level 2</h4>
                     <p>10%</p>
                 </div>
                 
                 <div class="level-box">
-                    <h4>Level 3 - 7</h4>
+                    <h4 data-key="referral.level3">Level 3 - 7</h4>
                     <p>5%</p>
                 </div>
                 
                 <div class="level-box">
-                    <h4>Level 8 - 10</h4>
+                    <h4 data-key="referral.level4">Level 8 - 10</h4>
                     <p>3%</p>
                 </div>
                 
                 <div class="level-box">
-                    <h4>Level 11 - 17</h4>
+                    <h4 data-key="referral.level5">Level 11 - 17</h4>
                     <p>1%</p>
                 </div>
             </div>
             
-            <p>Semakin tinggi investasi Anda, semakin dalam level referral yang akan terbuka!</p>
+            <p data-key="referral.note">Semakin tinggi investasi Anda, semakin dalam level referral yang akan terbuka!</p>
         </div>
     </section>
     
     <section id="security" class="section">
         <div class="container">
-            <h2><i class="fas fa-shield-alt"></i> SISTEM KEAMANAN</h2>
+            <h2><i class="fas fa-shield-alt"></i> <span data-key="security.title">SISTEM KEAMANAN</span></h2>
             
             <div class="security-features">
                 <div class="feature-box">
-                    <h3><i class="fas fa-network-wired"></i> Terdesentralisasi</h3>
-                    <p>Cluster Yield tidak dikendalikan oleh pihak manapun. Semua proses diatur oleh kontrak pintar yang tidak bisa dimodifikasi, memberikan kepastian dan otonomi penuh kepada pengguna.</p>
+                    <h3><i class="fas fa-network-wired"></i> <span data-key="security.decentralized">Terdesentralisasi</span></h3>
+                    <p data-key="security.decentralizedDesc">Cluster Yield tidak dikendalikan oleh pihak manapun. Semua proses diatur oleh kontrak pintar yang tidak bisa dimodifikasi, memberikan kepastian dan otonomi penuh kepada pengguna.</p>
                 </div>
                 
                 <div class="feature-box">
-                    <h3><i class="fas fa-shield-alt"></i> Teknologi Blockchain</h3>
-                    <p>Dibangun di atas jaringan BNB Smart Chain yang terpercaya, memastikan setiap transaksi berjalan cepat, aman, dan transparan.</p>
+                    <h3><i class="fas fa-shield-alt"></i> <span data-key="security.blockchain">Teknologi Blockchain</span></h3>
+                    <p data-key="security.blockchainDesc">Dibangun di atas jaringan BNB Smart Chain yang terpercaya, memastikan setiap transaksi berjalan cepat, aman, dan transparan.</p>
                 </div>
                 
                 <div class="feature-box">
-                    <h3><i class="fas fa-file-contract"></i> Kontrak Pintar Terverifikasi</h3>
-                    <p>Kode kontrak telah diverifikasi di BSCScan, terbuka untuk publik, dan telah diaudit oleh pihak independen.</p>
+                    <h3><i class="fas fa-file-contract"></i> <span data-key="security.smartContract">Kontrak Pintar Terverifikasi</span></h3>
+                    <p data-key="security.smartContractDesc">Kode kontrak telah diverifikasi di BSCScan, terbuka untuk publik, dan telah diaudit oleh pihak independen.</p>
                 </div>
                 
                 <div class="feature-box">
-                    <h3><i class="fas fa-eye"></i> Transparan</h3>
-                    <p>Semua data transaksi, pembagian profit, dan aktivitas referral dapat dilacak langsung melalui jaringan blockchain.</p>
+                    <h3><i class="fas fa-eye"></i> <span data-key="security.transparent">Transparan</span></h3>
+                    <p data-key="security.transparentDesc">Semua data transaksi, pembagian profit, dan aktivitas referral dapat dilacak langsung melalui jaringan blockchain.</p>
                 </div>
                 
                 <div class="feature-box">
-                    <h3><i class="fas fa-exchange-alt"></i> Peer-to-Peer (P2P)</h3>
-                    <p>Tanpa perantara. Semua interaksi keuangan berjalan langsung antara pengguna dan kontrak pintar.</p>
+                    <h3><i class="fas fa-exchange-alt"></i> <span data-key="security.p2p">Peer-to-Peer (P2P)</span></h3>
+                    <p data-key="security.p2pDesc">Tanpa perantara. Semua interaksi keuangan berjalan langsung antara pengguna dan kontrak pintar.</p>
                 </div>
             </div>
             
             <div style="text-align: center; margin-top: 25px;">
-                <a href="https://bscscan.com/address/0xa3512bD47D64fDA7AD9160A259f1cf95e35d0F61#code" class="btn" target="_blank"><i class="fas fa-file-contract"></i> Cek Kontrak di BSC Scan</a>
-                <a href="https://hazecrypto.net/audit/ClusterYield" class="btn" target="_blank"><i class="fas fa-shield-alt"></i> Audit HazeCrypto</a>
-                <a href="https://dappaudit.pro/audits/cluster-yield-audit.html" class="btn" target="_blank"><i class="fas fa-search"></i> Audit DAppsAuditPro</a>
+                <a href="https://bscscan.com/address/0xa3512bD47D64fDA7AD9160A259f1cf95e35d0F61#code" class="btn" target="_blank"><i class="fas fa-file-contract"></i> <span data-key="security.viewContract">Cek Kontrak di BSC Scan</span></a>
+                <a href="https://hazecrypto.net/audit/ClusterYield" class="btn" target="_blank"><i class="fas fa-shield-alt"></i> <span data-key="security.viewAudit">Audit HazeCrypto</span></a>
+                <a href="https://dappaudit.pro/audits/cluster-yield-audit.html" class="btn" target="_blank"><i class="fas fa-search"></i> <span data-key="security.viewAudit2">Audit DAppsAuditPro</span></a>
             </div>
         </div>
     </section>
     
     <section id="join" class="section">
         <div class="container">
-            <h2><i class="fas fa-sign-in-alt"></i> CARA BERGABUNG</h2>
+            <h2><i class="fas fa-sign-in-alt"></i> <span data-key="join.title">CARA BERGABUNG</span></h2>
             
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/6n4pSCeJ5Fg?si=WoNoUUCu-Hlo2lSB" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1113,24 +1229,24 @@
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-content">
-                        <p>Siapkan dompet crypto (seperti SafePal) yang mendukung BNB Smart Chain.</p>
+                        <p data-key="join.step1">Siapkan dompet crypto (seperti SafePal) yang mendukung BNB Smart Chain.</p>
                     </div>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-content">
-                        <p>Danai dengan minimal 10 USDT + sedikit BNB sebagai gas fee.</p>
+                        <p data-key="join.step2">Danai dengan minimal 10 USDT + sedikit BNB sebagai gas fee.</p>
                     </div>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <p>Buka browser DApps, lalu tempel link berikut :</p>
+                        <p data-key="join.step3">Buka browser DApps, lalu tempel link berikut :</p>
                         <div class="copy-link">
                             <input type="text" id="ref-link" value="https://clusteryield.com/ref/0x0393405d54bfa834DD3B7bCBDD338a3fE35DB308" readonly>
-                            <button onclick="copyRefLink()"><i class="far fa-copy"></i> Salin</button>
+                            <button onclick="copyRefLink()"><i class="far fa-copy"></i> <span data-key="join.copy">Salin</span></button>
                         </div>
                     </div>
                 </div>
@@ -1138,59 +1254,59 @@
                 <div class="step">
                     <div class="step-number">4</div>
                     <div class="step-content">
-                        <p>Hubungkan dompet Anda ke Cluster Yield.</p>
+                        <p data-key="join.step4">Hubungkan dompet Anda ke Cluster Yield.</p>
                     </div>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">5</div>
                     <div class="step-content">
-                        <p>Pilih plan, masukkan jumlah modal, dan konfirmasi.</p>
+                        <p data-key="join.step5">Pilih plan, masukkan jumlah modal, dan konfirmasi.</p>
                     </div>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">6</div>
                     <div class="step-content">
-                        <p>Profit harian akan masuk otomatis ke dashboard Anda.</p>
+                        <p data-key="join.step6">Profit harian akan masuk otomatis ke dashboard Anda.</p>
                     </div>
                 </div>
             </div>
             
             <div style="text-align: center; margin-top: 25px;">
-                <a href="https://t.me/ClusterYieldBot" class="btn btn-bot" target="_blank"><i class="fas fa-robot"></i> Hubungi Bot Pendaftaran</a>
+                <a href="https://t.me/ClusterYieldBot" class="btn btn-bot" target="_blank"><i class="fas fa-robot"></i> <span data-key="join.contactBot">Hubungi Bot Pendaftaran</span></a>
             </div>
         </div>
     </section>
     
     <section id="media" class="section">
         <div class="container">
-            <h2><i class="fas fa-newspaper"></i> LIPUTAN MEDIA</h2>
-            <p class="subtitle">Kami telah diliput oleh media crypto global!</p>
+            <h2><i class="fas fa-newspaper"></i> <span data-key="media.title">LIPUTAN MEDIA</span></h2>
+            <p class="subtitle" data-key="media.subtitle">Kami telah diliput oleh media crypto global!</p>
             
             <div class="media-container">
                 <div class="media-box">
-                    <h3><i class="fas fa-microchip"></i> Bitcoin Insider</h3>
-                    <p>"Platform DeFi AI yang mengirim USDT setiap hari."</p>
-                    <a href="https://www.bitcoininsider.org/article/276538/clusteryieldcom-officially-launches-ai-powered-defi-platform-delivering-daily-usdt" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> Baca Artikel</a>
+                    <h3><i class="fas fa-microchip"></i> <span data-key="media.bitcoinInsider">Bitcoin Insider</span></h3>
+                    <p data-key="media.bitcoinInsiderQuote">"Platform DeFi AI yang mengirim USDT setiap hari."</p>
+                    <a href="https://www.bitcoininsider.org/article/276538/clusteryieldcom-officially-launches-ai-powered-defi-platform-delivering-daily-usdt" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> <span data-key="media.readArticle">Baca Artikel</span></a>
                 </div>
                 
                 <div class="media-box">
-                    <h3><i class="fas fa-microchip"></i> The Bit Times</h3>
-                    <p>"Pendapatan pasif tanpa KYC, tanpa trading, hanya dengan USDT."</p>
-                    <a href="https://thebittimes.com/clusteryield-com-launches-to-deliver-truly-passive-ai-crypto-income-no-trading-no-kyc-just-usdt-daily-tbt116613.html" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> Baca Artikel</a>
+                    <h3><i class="fas fa-microchip"></i> <span data-key="media.bitTimes">The Bit Times</span></h3>
+                    <p data-key="media.bitTimesQuote">"Pendapatan pasif tanpa KYC, tanpa trading, hanya dengan USDT."</p>
+                    <a href="https://thebittimes.com/clusteryield-com-launches-to-deliver-truly-passive-ai-crypto-income-no-trading-no-kyc-just-usdt-daily-tbt116613.html" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> <span data-key="media.readArticle">Baca Artikel</span></a>
                 </div>
                 
                 <div class="media-box">
-                    <h3><i class="fas fa-microchip"></i> Tech Announcer</h3>
-                    <p>"Solusi AI untuk passive income crypto."</p>
-                    <a href="https://techannouncer.com/clusteryield-com-launches-to-deliver-truly-passive-ai-crypto-income-no-trading-no-kyc-just-usdt-daily/" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> Baca Artikel</a>
+                    <h3><i class="fas fa-microchip"></i> <span data-key="media.techAnnouncer">Tech Announcer</span></h3>
+                    <p data-key="media.techAnnouncerQuote">"Solusi AI untuk passive income crypto."</p>
+                    <a href="https://techannouncer.com/clusteryield-com-launches-to-deliver-truly-passive-ai-crypto-income-no-trading-no-kyc-just-usdt-daily/" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> <span data-key="media.readArticle">Baca Artikel</span></a>
                 </div>
                 
                 <div class="media-box">
-                    <h3><i class="fas fa-microchip"></i> Crypto Times</h3>
-                    <p>"Platform berbasis AI untuk pendapatan crypto otomatis."</p>
-                    <a href="https://www.cryptotimes.io/press-release/clusteryield-com-ai-driven-platform-for-passive-crypto-earnings/" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> Baca Artikel</a>
+                    <h3><i class="fas fa-microchip"></i> <span data-key="media.cryptoTimes">Crypto Times</span></h3>
+                    <p data-key="media.cryptoTimesQuote">"Platform berbasis AI untuk pendapatan crypto otomatis."</p>
+                    <a href="https://www.cryptotimes.io/press-release/clusteryield-com-ai-driven-platform-for-passive-crypto-earnings/" class="btn" target="_blank"><i class="fas fa-external-link-alt"></i> <span data-key="media.readArticle">Baca Artikel</span></a>
                 </div>
             </div>
         </div>
@@ -1198,44 +1314,44 @@
     
     <section id="faq" class="section">
         <div class="container">
-            <h2><i class="fas fa-question-circle"></i> TANYA JAWAB UMUM</h2>
+            <h2><i class="fas fa-question-circle"></i> <span data-key="faq.title">TANYA JAWAB UMUM</span></h2>
             
             <div class="faq-item">
-                <div class="faq-question">Berapa minimum investasi?</div>
-                <div class="faq-answer">Minimal 10 USDT + sedikit BNB untuk biaya jaringan.</div>
+                <div class="faq-question" data-key="faq.q1">Berapa minimum investasi?</div>
+                <div class="faq-answer" data-key="faq.a1">Minimal 10 USDT + sedikit BNB untuk biaya jaringan.</div>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">Apakah ada batas maksimal?</div>
-                <div class="faq-answer">Tidak ada. Investasi dapat disesuaikan dengan strategi Anda.</div>
+                <div class="faq-question" data-key="faq.q2">Apakah ada batas maksimal?</div>
+                <div class="faq-answer" data-key="faq.a2">Tidak ada. Investasi dapat disesuaikan dengan strategi Anda.</div>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">Bagaimana cara menghitung profit harian?</div>
-                <div class="faq-answer">Profit dihitung otomatis berdasarkan plan & modal melalui sistem AI.</div>
+                <div class="faq-question" data-key="faq.q3">Bagaimana cara menghitung profit harian?</div>
+                <div class="faq-answer" data-key="faq.a3">Profit dihitung otomatis berdasarkan plan & modal melalui sistem AI.</div>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">Bisa memiliki beberapa plan aktif?</div>
-                <div class="faq-answer">Bisa. Setiap plan berjalan independen.</div>
+                <div class="faq-question" data-key="faq.q4">Bisa memiliki beberapa plan aktif?</div>
+                <div class="faq-answer" data-key="faq.a4">Bisa. Setiap plan berjalan independen.</div>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">Bagaimana sistem referral bekerja?</div>
-                <div class="faq-answer">Bonus diberikan dari hasil profit harian tim Anda, hingga 17 level.</div>
+                <div class="faq-question" data-key="faq.q5">Bagaimana sistem referral bekerja?</div>
+                <div class="faq-answer" data-key="faq.a5">Bonus diberikan dari hasil profit harian tim Anda, hingga 17 level.</div>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">Apakah platform ini aman?</div>
-                <div class="faq-answer">Cluster Yield telah diaudit secara menyeluruh dan menggunakan kontrak pintar terverifikasi.</div>
+                <div class="faq-question" data-key="faq.q6">Apakah platform ini aman?</div>
+                <div class="faq-answer" data-key="faq.a6">Cluster Yield telah diaudit secara menyeluruh dan menggunakan kontrak pintar terverifikasi.</div>
             </div>
             
             <div class="question-box">
-                <h3><i class=""></i>Ada pertanyaan lain?</h3>
-                <p>Tanyakan di bawah ini :</p>
-                <textarea id="user-question" placeholder="Tulis pertanyaan Anda di sini..."></textarea>
+                <h3><i class=""></i><span data-key="faq.otherQuestion">Ada pertanyaan lain?</span></h3>
+                <p data-key="faq.askBelow">Tanyakan di bawah ini :</p>
+                <textarea id="user-question" data-key="faq.writeQuestion" data-placeholder="Tulis pertanyaan Anda di sini..."></textarea>
                 <div style="text-align: center;">
-                    <button id="whatsapp-btn" class="btn btn-accent" onclick="sendWhatsAppMessage()"><i class="fab fa-whatsapp"></i> Kirim ke WhatsApp</button>
+                    <button id="whatsapp-btn" class="btn btn-accent" onclick="sendWhatsAppMessage()"><i class="fab fa-whatsapp"></i> <span data-key="faq.sendWhatsApp">Kirim ke WhatsApp</span></button>
                 </div>
             </div>
         </div>
@@ -1243,40 +1359,569 @@
     
     <section id="community" class="section">
         <div class="container">
-            <h2><i class="fas fa-users"></i> KOMUNITAS & EDUKASI</h2>
-            <p class="subtitle">Bergabunglah bersama ribuan investor lain dan dapatkan informasi edukatif secara berkala!</p>
+            <h2><i class="fas fa-users"></i> <span data-key="community.title">KOMUNITAS & EDUKASI</span></h2>
+            <p class="subtitle" data-key="community.subtitle">Bergabunglah bersama ribuan investor lain dan dapatkan informasi edukatif secara berkala!</p>
             
             <div class="social-buttons">
-                <a href="https://chat.whatsapp.com/JztnkdNgSIs2BAwM3f84ZW" class="btn" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Group #5</a>
-                <a href="https://t.me/ClusterYieldOfficial" class="btn" target="_blank"><i class="fab fa-telegram"></i> Channel Informasi</a>
+                <a href="https://chat.whatsapp.com/JztnkdNgSIs2BAwM3f84ZW" class="btn" target="_blank"><i class="fab fa-whatsapp"></i> <span data-key="community.whatsappGroup">WhatsApp Group #5</span></a>
+                <a href="https://t.me/ClusterYieldOfficial" class="btn" target="_blank"><i class="fab fa-telegram"></i> <span data-key="community.telegramChannel">Channel Informasi</span></a>
             </div>
         </div>
     </section>
     
     <section id="support" class="section">
         <div class="container">
-            <h2><i class="fas fa-headset"></i> DUKUNGAN & KONTAK</h2>
-            <p class="subtitle">Kami siap membantu!</p>
+            <h2><i class="fas fa-headset"></i> <span data-key="support.title">DUKUNGAN & KONTAK</span></h2>
+            <p class="subtitle" data-key="support.subtitle">Kami siap membantu!</p>
             
             <div class="social-buttons">
-                <a href="https://wa.me/+6282380958611?text=Pandu+Join+Cluster+Yield" class="btn" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Support</a>
-                <a href="https://t.me/ChoexoDevBot?start=welcome" class="btn" target="_blank"><i class="fab fa-telegram"></i> Telegram Support</a>
+                <a href="https://wa.me/+6282380958611?text=Pandu+Join+Cluster+Yield" class="btn" target="_blank"><i class="fab fa-whatsapp"></i> <span data-key="support.whatsapp">WhatsApp Support</span></a>
+                <a href="https://t.me/ChoexoDevBot?start=welcome" class="btn" target="_blank"><i class="fab fa-telegram"></i> <span data-key="support.telegram">Telegram Support</span></a>
             </div>
         </div>
     </section>
     
     <footer class="section">
         <div class="container">
-            <p>Wujudkan masa depan keuangan Anda dengan sistem otomatis yang bekerja tanpa lelah.<br>
+            <p data-key="footer.message">Wujudkan masa depan keuangan Anda dengan sistem otomatis yang bekerja tanpa lelah.<br>
             Satu langkah kecil hari ini, penghasilan pasif selamanya.</p>
             
-            <a href="#join" class="btn btn-accent" style="margin-top: 20px;"><i class="fas fa-rocket"></i> Mulai Sekarang</a>
+            <a href="#join" class="btn btn-accent" style="margin-top: 20px;"><i class="fas fa-rocket"></i> <span data-key="header.startNow">Mulai Sekarang</span></a>
             
-            <p style="margin-top: 25px;">© 2025 Cluster Yield — All Rights Reserved</p>
+            <p style="margin-top: 25px;">© 2025 Cluster Yield — <span data-key="footer.rights">All Rights Reserved</span></p>
         </div>
     </footer>
 
     <script>
+        // Translation data
+        const translations = {
+            'id': {
+                'nav.about': 'Penjelasan',
+                'nav.plans': 'Plan Investasi',
+                'nav.referral': 'Sistem Referral',
+                'nav.security': 'Sistem Keamanan',
+                'nav.join': 'Cara Bergabung',
+                'nav.media': 'Liputan Media',
+                'nav.faq': 'Tanya Jawab Umum',
+                'nav.community': 'Komunitas & Edukasi',
+                'nav.support': 'Dukungan & Kontak',
+                'header.title': 'MESIN DOLLAR AUTOMATIC DI BLOCKCHAIN',
+                'header.subtitle': 'Launching 15 Juni 2025',
+                'header.whatIs': 'APA ITU CLUSTER YIELD?',
+                'header.description': 'Cluster Yield adalah platform investasi digital yang menggabungkan kecerdasan buatan (AI) dan Smart Contract di jaringan BNB Smart Chain. Dikelola sepenuhnya oleh sistem otomatis tanpa campur tangan manusia, platform ini menghapus ketergantungan terhadap admin, meminimalkan risiko keterlambatan, dan memberikan jaminan transparansi penuh.',
+                'header.startNow': 'Mulai Sekarang',
+                'plans.title': 'PLAN INVESTASI',
+                'plans.subtitle': 'Pilih plan sesuai dengan tujuan dan strategi investasi Anda!',
+                'plans.beginner': 'Beginner Plan',
+                'plans.starter': 'Starter Plan',
+                'plans.basic': 'Basic Plan',
+                'plans.standard': 'Standard Plan',
+                'plans.advanced': 'Advanced Plan',
+                'plans.premium': 'Premium Plan',
+                'plans.elite': 'Elite Plan',
+                'plans.ultimate': 'Ultimate Plan',
+                'plans.capital': 'Modal',
+                'plans.duration': 'Durasi',
+                'plans.days': 'Hari',
+                'plans.profit': 'Profit Harian',
+                'calculator.title': 'KALKULATOR PROFIT',
+                'calculator.subtitle': 'Lakukan simulasi hasil investasi Anda!',
+                'calculator.plan': 'Plan Investasi :',
+                'calculator.selectPlan': '-- Pilih Plan --',
+                'calculator.investment': 'Modal Investasi (USDT) :',
+                'calculator.enterAmount': 'Masukkan jumlah modal',
+                'calculator.dailyProfit': 'Profit Harian :',
+                'calculator.calculate': 'Hitung Profit',
+                'calculator.totalProfit': 'Total Profit :',
+                'referral.title': 'SISTEM REFERRAL',
+                'referral.description': 'Cluster Yield menghadirkan program referral progresif dengan potensi bonus hingga 71% dari hasil harian jaringan Anda. Bonus dihitung bukan dari modal awal, tetapi dari profit yang dihasilkan tim Anda!',
+                'referral.level1': 'Level 1',
+                'referral.level2': 'Level 2',
+                'referral.level3': 'Level 3 - 7',
+                'referral.level4': 'Level 8 - 10',
+                'referral.level5': 'Level 11 - 17',
+                'referral.note': 'Semakin tinggi investasi Anda, semakin dalam level referral yang akan terbuka!',
+                'security.title': 'SISTEM KEAMANAN',
+                'security.decentralized': 'Terdesentralisasi',
+                'security.decentralizedDesc': 'Cluster Yield tidak dikendalikan oleh pihak manapun. Semua proses diatur oleh kontrak pintar yang tidak bisa dimodifikasi, memberikan kepastian dan otonomi penuh kepada pengguna.',
+                'security.blockchain': 'Teknologi Blockchain',
+                'security.blockchainDesc': 'Dibangun di atas jaringan BNB Smart Chain yang terpercaya, memastikan setiap transaksi berjalan cepat, aman, dan transparan.',
+                'security.smartContract': 'Kontrak Pintar Terverifikasi',
+                'security.smartContractDesc': 'Kode kontrak telah diverifikasi di BSCScan, terbuka untuk publik, dan telah diaudit oleh pihak independen.',
+                'security.transparent': 'Transparan',
+                'security.transparentDesc': 'Semua data transaksi, pembagian profit, dan aktivitas referral dapat dilacak langsung melalui jaringan blockchain.',
+                'security.p2p': 'Peer-to-Peer (P2P)',
+                'security.p2pDesc': 'Tanpa perantara. Semua interaksi keuangan berjalan langsung antara pengguna dan kontrak pintar.',
+                'security.viewContract': 'Cek Kontrak di BSC Scan',
+                'security.viewAudit': 'Audit HazeCrypto',
+                'security.viewAudit2': 'Audit DAppsAuditPro',
+                'join.title': 'CARA BERGABUNG',
+                'join.step1': 'Siapkan dompet crypto (seperti SafePal) yang mendukung BNB Smart Chain.',
+                'join.step2': 'Danai dengan minimal 10 USDT + sedikit BNB sebagai gas fee.',
+                'join.step3': 'Buka browser DApps, lalu tempel link berikut :',
+                'join.copy': 'Salin',
+                'join.step4': 'Hubungkan dompet Anda ke Cluster Yield.',
+                'join.step5': 'Pilih plan, masukkan jumlah modal, dan konfirmasi.',
+                'join.step6': 'Profit harian akan masuk otomatis ke dashboard Anda.',
+                'join.contactBot': 'Hubungi Bot Pendaftaran',
+                'media.title': 'LIPUTAN MEDIA',
+                'media.subtitle': 'Kami telah diliput oleh media crypto global!',
+                'media.bitcoinInsider': 'Bitcoin Insider',
+                'media.bitcoinInsiderQuote': '"Platform DeFi AI yang mengirim USDT setiap hari."',
+                'media.bitTimes': 'The Bit Times',
+                'media.bitTimesQuote': '"Pendapatan pasif tanpa KYC, tanpa trading, hanya dengan USDT."',
+                'media.techAnnouncer': 'Tech Announcer',
+                'media.techAnnouncerQuote': '"Solusi AI untuk passive income crypto."',
+                'media.cryptoTimes': 'Crypto Times',
+                'media.cryptoTimesQuote': '"Platform berbasis AI untuk pendapatan crypto otomatis."',
+                'media.readArticle': 'Baca Artikel',
+                'faq.title': 'TANYA JAWAB UMUM',
+                'faq.q1': 'Berapa minimum investasi?',
+                'faq.a1': 'Minimal 10 USDT + sedikit BNB untuk biaya jaringan.',
+                'faq.q2': 'Apakah ada batas maksimal?',
+                'faq.a2': 'Tidak ada. Investasi dapat disesuaikan dengan strategi Anda.',
+                'faq.q3': 'Bagaimana cara menghitung profit harian?',
+                'faq.a3': 'Profit dihitung otomatis berdasarkan plan & modal melalui sistem AI.',
+                'faq.q4': 'Bisa memiliki beberapa plan aktif?',
+                'faq.a4': 'Bisa. Setiap plan berjalan independen.',
+                'faq.q5': 'Bagaimana sistem referral bekerja?',
+                'faq.a5': 'Bonus diberikan dari hasil profit harian tim Anda, hingga 17 level.',
+                'faq.q6': 'Apakah platform ini aman?',
+                'faq.a6': 'Cluster Yield telah diaudit secara menyeluruh dan menggunakan kontrak pintar terverifikasi.',
+                'faq.otherQuestion': 'Ada pertanyaan lain?',
+                'faq.askBelow': 'Tanyakan di bawah ini :',
+                'faq.writeQuestion': 'Tulis pertanyaan Anda di sini...',
+                'faq.sendWhatsApp': 'Kirim ke WhatsApp',
+                'community.title': 'KOMUNITAS & EDUKASI',
+                'community.subtitle': 'Bergabunglah bersama ribuan investor lain dan dapatkan informasi edukatif secara berkala!',
+                'community.whatsappGroup': 'WhatsApp Group #5',
+                'community.telegramChannel': 'Channel Informasi',
+                'support.title': 'DUKUNGAN & KONTAK',
+                'support.subtitle': 'Kami siap membantu!',
+                'support.whatsapp': 'WhatsApp Support',
+                'support.telegram': 'Telegram Support',
+                'footer.message': 'Wujudkan masa depan keuangan Anda dengan sistem otomatis yang bekerja tanpa lelah.<br>Satu langkah kecil hari ini, penghasilan pasif selamanya.',
+                'footer.rights': 'All Rights Reserved'
+            },
+            'en': {
+                'nav.about': 'About',
+                'nav.plans': 'Investment Plans',
+                'nav.referral': 'Referral System',
+                'nav.security': 'Security System',
+                'nav.join': 'How to Join',
+                'nav.media': 'Media Coverage',
+                'nav.faq': 'FAQ',
+                'nav.community': 'Community & Education',
+                'nav.support': 'Support & Contact',
+                'header.title': 'AUTOMATIC DOLLAR MACHINE ON BLOCKCHAIN',
+                'header.subtitle': 'Launching June 15, 2025',
+                'header.whatIs': 'WHAT IS CLUSTER YIELD?',
+                'header.description': 'Cluster Yield is a digital investment platform that combines artificial intelligence (AI) and Smart Contracts on the BNB Smart Chain network. Fully managed by an automated system without human intervention, this platform eliminates dependence on admins, minimizes delays, and provides full transparency guarantees.',
+                'header.startNow': 'Get Started Now',
+                'plans.title': 'INVESTMENT PLANS',
+                'plans.subtitle': 'Choose a plan according to your investment goals and strategy!',
+                'plans.beginner': 'Beginner Plan',
+                'plans.starter': 'Starter Plan',
+                'plans.basic': 'Basic Plan',
+                'plans.standard': 'Standard Plan',
+                'plans.advanced': 'Advanced Plan',
+                'plans.premium': 'Premium Plan',
+                'plans.elite': 'Elite Plan',
+                'plans.ultimate': 'Ultimate Plan',
+                'plans.capital': 'Capital',
+                'plans.duration': 'Duration',
+                'plans.days': 'Days',
+                'plans.profit': 'Daily Profit',
+                'calculator.title': 'PROFIT CALCULATOR',
+                'calculator.subtitle': 'Simulate your investment results!',
+                'calculator.plan': 'Investment Plan :',
+                'calculator.selectPlan': '-- Select Plan --',
+                'calculator.investment': 'Investment Amount (USDT) :',
+                'calculator.enterAmount': 'Enter investment amount',
+                'calculator.dailyProfit': 'Daily Profit :',
+                'calculator.calculate': 'Calculate Profit',
+                'calculator.totalProfit': 'Total Profit :',
+                'referral.title': 'REFERRAL SYSTEM',
+                'referral.description': 'Cluster Yield offers a progressive referral program with potential bonuses up to 71% of your network\'s daily results. Bonuses are calculated not from the initial capital, but from the profit generated by your team!',
+                'referral.level1': 'Level 1',
+                'referral.level2': 'Level 2',
+                'referral.level3': 'Level 3 - 7',
+                'referral.level4': 'Level 8 - 10',
+                'referral.level5': 'Level 11 - 17',
+                'referral.note': 'The higher your investment, the deeper referral levels will be unlocked!',
+                'security.title': 'SECURITY SYSTEM',
+                'security.decentralized': 'Decentralized',
+                'security.decentralizedDesc': 'Cluster Yield is not controlled by any party. All processes are governed by unmodifiable smart contracts, providing certainty and full autonomy to users.',
+                'security.blockchain': 'Blockchain Technology',
+                'security.blockchainDesc': 'Built on the trusted BNB Smart Chain network, ensuring every transaction is fast, secure, and transparent.',
+                'security.smartContract': 'Verified Smart Contract',
+                'security.smartContractDesc': 'The contract code has been verified on BSCScan, is open to the public, and has been audited by independent parties.',
+                'security.transparent': 'Transparent',
+                'security.transparentDesc': 'All transaction data, profit distribution, and referral activity can be tracked directly through the blockchain network.',
+                'security.p2p': 'Peer-to-Peer (P2P)',
+                'security.p2pDesc': 'No intermediaries. All financial interactions run directly between users and smart contracts.',
+                'security.viewContract': 'View Contract on BSC Scan',
+                'security.viewAudit': 'HazeCrypto Audit',
+                'security.viewAudit2': 'DAppsAuditPro Audit',
+                'join.title': 'HOW TO JOIN',
+                'join.step1': 'Prepare a crypto wallet (like SafePal) that supports BNB Smart Chain.',
+                'join.step2': 'Fund with at least 10 USDT + a little BNB for gas fees.',
+                'join.step3': 'Open the DApps browser, then paste the following link:',
+                'join.copy': 'Copy',
+                'join.step4': 'Connect your wallet to Cluster Yield.',
+                'join.step5': 'Select a plan, enter the investment amount, and confirm.',
+                'join.step6': 'Daily profits will automatically appear in your dashboard.',
+                'join.contactBot': 'Contact Registration Bot',
+                'media.title': 'MEDIA COVERAGE',
+                'media.subtitle': 'We\'ve been featured in global crypto media!',
+                'media.bitcoinInsider': 'Bitcoin Insider',
+                'media.bitcoinInsiderQuote': '"AI-powered DeFi platform that sends USDT daily."',
+                'media.bitTimes': 'The Bit Times',
+                'media.bitTimesQuote': '"Passive income without KYC, without trading, just with USDT."',
+                'media.techAnnouncer': 'Tech Announcer',
+                'media.techAnnouncerQuote': '"AI solution for crypto passive income."',
+                'media.cryptoTimes': 'Crypto Times',
+                'media.cryptoTimesQuote': '"AI-based platform for automatic crypto earnings."',
+                'media.readArticle': 'Read Article',
+                'faq.title': 'FREQUENTLY ASKED QUESTIONS',
+                'faq.q1': 'What is the minimum investment?',
+                'faq.a1': 'Minimum 10 USDT + a little BNB for network fees.',
+                'faq.q2': 'Is there a maximum limit?',
+                'faq.a2': 'No. Investment can be adjusted according to your strategy.',
+                'faq.q3': 'How is daily profit calculated?',
+                'faq.a3': 'Profit is automatically calculated based on plan & capital through the AI system.',
+                'faq.q4': 'Can I have multiple active plans?',
+                'faq.a4': 'Yes. Each plan runs independently.',
+                'faq.q5': 'How does the referral system work?',
+                'faq.a5': 'Bonuses are given from your team\'s daily profit results, up to 17 levels.',
+                'faq.q6': 'Is this platform safe?',
+                'faq.a6': 'Cluster Yield has been thoroughly audited and uses verified smart contracts.',
+                'faq.otherQuestion': 'Have another question?',
+                'faq.askBelow': 'Ask below:',
+                'faq.writeQuestion': 'Write your question here...',
+                'faq.sendWhatsApp': 'Send via WhatsApp',
+                'community.title': 'COMMUNITY & EDUCATION',
+                'community.subtitle': 'Join thousands of other investors and get regular educational information!',
+                'community.whatsappGroup': 'WhatsApp Group #5',
+                'community.telegramChannel': 'Information Channel',
+                'support.title': 'SUPPORT & CONTACT',
+                'support.subtitle': 'We\'re ready to help!',
+                'support.whatsapp': 'WhatsApp Support',
+                'support.telegram': 'Telegram Support',
+                'footer.message': 'Realize your financial future with an automated system that works tirelessly.<br>One small step today, passive income forever.',
+                'footer.rights': 'All Rights Reserved'
+            },
+            'fr': {
+                'nav.about': 'À propos',
+                'nav.plans': 'Plans d\'investissement',
+                'nav.referral': 'Système de parrainage',
+                'nav.security': 'Système de sécurité',
+                'nav.join': 'Comment rejoindre',
+                'nav.media': 'Couverture médiatique',
+                'nav.faq': 'FAQ',
+                'nav.community': 'Communauté & Éducation',
+                'nav.support': 'Support & Contact',
+                'header.title': 'MACHINE À DOLLARS AUTOMATIQUE SUR LA BLOCKCHAIN',
+                'header.subtitle': 'Lancement le 15 juin 2025',
+                'header.whatIs': 'QU\'EST-CE QUE CLUSTER YIELD?',
+                'header.description': 'Cluster Yield est une plateforme d\'investissement numérique qui combine l\'intelligence artificielle (IA) et les contrats intelligents sur le réseau BNB Smart Chain. Entièrement gérée par un système automatisé sans intervention humaine, cette plateforme élimine la dépendance aux administrateurs, minimise les retards et garantit une transparence totale.',
+                'header.startNow': 'Commencer maintenant',
+                'plans.title': 'PLANS D\'INVESTISSEMENT',
+                'plans.subtitle': 'Choisissez un plan selon vos objectifs et stratégie d\'investissement!',
+                'plans.beginner': 'Plan Débutant',
+                'plans.starter': 'Plan Starter',
+                'plans.basic': 'Plan Basique',
+                'plans.standard': 'Plan Standard',
+                'plans.advanced': 'Plan Avancé',
+                'plans.premium': 'Plan Premium',
+                'plans.elite': 'Plan Élite',
+                'plans.ultimate': 'Plan Ultime',
+                'plans.capital': 'Capital',
+                'plans.duration': 'Durée',
+                'plans.days': 'Jours',
+                'plans.profit': 'Profit Quotidien',
+                'calculator.title': 'CALCULATEUR DE PROFIT',
+                'calculator.subtitle': 'Simulez vos résultats d\'investissement!',
+                'calculator.plan': 'Plan d\'investissement :',
+                'calculator.selectPlan': '-- Sélectionner un Plan --',
+                'calculator.investment': 'Montant d\'investissement (USDT) :',
+                'calculator.enterAmount': 'Entrez le montant d\'investissement',
+                'calculator.dailyProfit': 'Profit Quotidien :',
+                'calculator.calculate': 'Calculer le Profit',
+                'calculator.totalProfit': 'Profit Total :',
+                'referral.title': 'SYSTÈME DE PARRAINAGE',
+                'referral.description': 'Cluster Yield propose un programme de parrainage progressif avec des bonus potentiels jusqu\'à 71% des résultats quotidiens de votre réseau. Les bonus sont calculés non pas sur le capital initial, mais sur le profit généré par votre équipe!',
+                'referral.level1': 'Niveau 1',
+                'referral.level2': 'Niveau 2',
+                'referral.level3': 'Niveau 3 - 7',
+                'referral.level4': 'Niveau 8 - 10',
+                'referral.level5': 'Niveau 11 - 17',
+                'referral.note': 'Plus votre investissement est élevé, plus les niveaux de parrainage seront débloqués!',
+                'security.title': 'SYSTÈME DE SÉCURITÉ',
+                'security.decentralized': 'Décentralisé',
+                'security.decentralizedDesc': 'Cluster Yield n\'est contrôlé par aucune partie. Tous les processus sont régis par des contrats intelligents non modifiables, offrant une certitude et une autonomie totale aux utilisateurs.',
+                'security.blockchain': 'Technologie Blockchain',
+                'security.blockchainDesc': 'Construit sur le réseau fiable BNB Smart Chain, garantissant que chaque transaction est rapide, sécurisée et transparente.',
+                'security.smartContract': 'Contrat Intelligent Vérifié',
+                'security.smartContractDesc': 'Le code du contrat a été vérifié sur BSCScan, est ouvert au public et a été audité par des parties indépendantes.',
+                'security.transparent': 'Transparent',
+                'security.transparentDesc': 'Toutes les données de transaction, la distribution des profits et l\'activité de parrainage peuvent être suivies directement via le réseau blockchain.',
+                'security.p2p': 'Peer-to-Peer (P2P)',
+                'security.p2pDesc': 'Pas d\'intermédiaires. Toutes les interactions financières se déroulent directement entre les utilisateurs et les contrats intelligents.',
+                'security.viewContract': 'Voir le Contrat sur BSC Scan',
+                'security.viewAudit': 'Audit HazeCrypto',
+                'security.viewAudit2': 'Audit DAppsAuditPro',
+                'join.title': 'COMMENT REJOINDRE',
+                'join.step1': 'Préparez un portefeuille crypto (comme SafePal) qui prend en charge BNB Smart Chain.',
+                'join.step2': 'Financez avec au moins 10 USDT + un peu de BNB pour les frais de gaz.',
+                'join.step3': 'Ouvrez le navigateur DApps, puis collez le lien suivant :',
+                'join.copy': 'Copier',
+                'join.step4': 'Connectez votre portefeuille à Cluster Yield.',
+                'join.step5': 'Sélectionnez un plan, entrez le montant d\'investissement et confirmez.',
+                'join.step6': 'Les profits quotidiens apparaîtront automatiquement dans votre tableau de bord.',
+                'join.contactBot': 'Contacter le Bot d\'Inscription',
+                'media.title': 'COUVERTURE MÉDIATIQUE',
+                'media.subtitle': 'Nous avons été présentés dans les médias crypto mondiaux!',
+                'media.bitcoinInsider': 'Bitcoin Insider',
+                'media.bitcoinInsiderQuote': '"Plateforme DeFi alimentée par l\'IA qui envoie des USDT quotidiennement."',
+                'media.bitTimes': 'The Bit Times',
+                'media.bitTimesQuote': '"Revenu passif sans KYC, sans trading, juste avec USDT."',
+                'media.techAnnouncer': 'Tech Announcer',
+                'media.techAnnouncerQuote': '"Solution IA pour un revenu passif en crypto."',
+                'media.cryptoTimes': 'Crypto Times',
+                'media.cryptoTimesQuote': '"Plateforme basée sur l\'IA pour des gains automatiques en crypto."',
+                'media.readArticle': 'Lire l\'Article',
+                'faq.title': 'QUESTIONS FRÉQUEMMENT POSÉES',
+                'faq.q1': 'Quel est l\'investissement minimum?',
+                'faq.a1': 'Minimum 10 USDT + un peu de BNB pour les frais de réseau.',
+                'faq.q2': 'Y a-t-il une limite maximale?',
+                'faq.a2': 'Non. L\'investissement peut être ajusté selon votre stratégie.',
+                'faq.q3': 'Comment le profit quotidien est-il calculé?',
+                'faq.a3': 'Le profit est automatiquement calculé en fonction du plan et du capital via le système IA.',
+                'faq.q4': 'Puis-je avoir plusieurs plans actifs?',
+                'faq.a4': 'Oui. Chaque plan fonctionne indépendamment.',
+                'faq.q5': 'Comment fonctionne le système de parrainage?',
+                'faq.a5': 'Les bonus sont donnés à partir des résultats quotidiens de profit de votre équipe, jusqu\'à 17 niveaux.',
+                'faq.q6': 'Cette plateforme est-elle sûre?',
+                'faq.a6': 'Cluster Yield a été audité de manière approfondie et utilise des contrats intelligents vérifiés.',
+                'faq.otherQuestion': 'Une autre question?',
+                'faq.askBelow': 'Demandez ci-dessous :',
+                'faq.writeQuestion': 'Écrivez votre question ici...',
+                'faq.sendWhatsApp': 'Envoyer via WhatsApp',
+                'community.title': 'COMMUNAUTÉ & ÉDUCATION',
+                'community.subtitle': 'Rejoignez des milliers d\'autres investisseurs et recevez des informations éducatives régulières!',
+                'community.whatsappGroup': 'Groupe WhatsApp #5',
+                'community.telegramChannel': 'Canal d\'Information',
+                'support.title': 'SUPPORT & CONTACT',
+                'support.subtitle': 'Nous sommes prêts à aider!',
+                'support.whatsapp': 'Support WhatsApp',
+                'support.telegram': 'Support Telegram',
+                'footer.message': 'Réalisez votre avenir financier avec un système automatisé qui travaille sans relâche.<br>Un petit pas aujourd\'hui, un revenu passif pour toujours.',
+                'footer.rights': 'Tous droits réservés'
+            },
+            'ar': {
+                'nav.about': 'حول',
+                'nav.plans': 'خطط الاستثمار',
+                'nav.referral': 'نظام الإحالة',
+                'nav.security': 'نظام الأمان',
+                'nav.join': 'كيفية الانضمام',
+                'nav.media': 'التغطية الإعلامية',
+                'nav.faq': 'الأسئلة الشائعة',
+                'nav.community': 'المجتمع والتعليم',
+                'nav.support': 'الدعم والاتصال',
+                'header.title': 'آلة الدولار التلقائية على البلوكشين',
+                'header.subtitle': 'سيتم الإطلاق في 15 يونيو 2025',
+                'header.whatIs': 'ما هو كلستر ييلد؟',
+                'header.description': 'كلستر ييلد هو منصة استثمار رقمية تجمع بين الذكاء الاصطناعي (AI) والعقود الذكية على شبكة BNB سمارت تشين. تُدار بالكامل بواسطة نظام آلي دون تدخل بشري، تلغي هذه المنصة الاعتماد على المسؤولين، وتقلل من مخاطر التأخير، وتوفر ضمانات شفافية كاملة.',
+                'header.startNow': 'ابدأ الآن',
+                'plans.title': 'خطط الاستثمار',
+                'plans.subtitle': 'اختر خطة وفقًا لأهدافك الاستثمارية واستراتيجيتك!',
+                'plans.beginner': 'الخطة المبتدئة',
+                'plans.starter': 'الخطة الأولية',
+                'plans.basic': 'الخطة الأساسية',
+                'plans.standard': 'الخطة القياسية',
+                'plans.advanced': 'الخطة المتقدمة',
+                'plans.premium': 'الخطة المميزة',
+                'plans.elite': 'الخطة النخبوية',
+                'plans.ultimate': 'الخطة النهائية',
+                'plans.capital': 'رأس المال',
+                'plans.duration': 'المدة',
+                'plans.days': 'أيام',
+                'plans.profit': 'الربح اليومي',
+                'calculator.title': 'حاسبة الربح',
+                'calculator.subtitle': 'قم بمحاكاة نتائج استثمارك!',
+                'calculator.plan': 'خطة الاستثمار :',
+                'calculator.selectPlan': '-- اختر خطة --',
+                'calculator.investment': 'مبلغ الاستثمار (USDT) :',
+                'calculator.enterAmount': 'أدخل مبلغ الاستثمار',
+                'calculator.dailyProfit': 'الربح اليومي :',
+                'calculator.calculate': 'حساب الربح',
+                'calculator.totalProfit': 'إجمالي الربح :',
+                'referral.title': 'نظام الإحالة',
+                'referral.description': 'يقدم كلستر ييلد برنامج إحالة تدريجي مع مكافآت محتملة تصل إلى 71٪ من النتائج اليومية لشبكتك. يتم حساب المكافآت ليس من رأس المال الأولي، ولكن من الربح الناتج عن فريقك!',
+                'referral.level1': 'المستوى 1',
+                'referral.level2': 'المستوى 2',
+                'referral.level3': 'المستوى 3 - 7',
+                'referral.level4': 'المستوى 8 - 10',
+                'referral.level5': 'المستوى 11 - 17',
+                'referral.note': 'كلما زاد استثمارك، زادت مستويات الإحالة التي سيتم فتحها!',
+                'security.title': 'نظام الأمان',
+                'security.decentralized': 'لا مركزي',
+                'security.decentralizedDesc': 'لا يتم التحكم في كلستر ييلد من قبل أي طرف. جميع العمليات تحكمها عقود ذكية غير قابلة للتعديل، مما يوفر اليقين والاستقلالية الكاملة للمستخدمين.',
+                'security.blockchain': 'تكنولوجيا البلوكشين',
+                'security.blockchainDesc': 'مبني على شبكة BNB سمارت تشين الموثوقة، مما يضمن أن كل معاملة سريعة وآمنة وشفافة.',
+                'security.smartContract': 'عقد ذكي موثق',
+                'security.smartContractDesc': 'تم التحقق من رمز العقد على BSCScan، وهو مفتوح للجمهور وتم تدقيقه من قبل أطراف مستقلة.',
+                'security.transparent': 'شفاف',
+                'security.transparentDesc': 'يمكن تتبع جميع بيانات المعاملات وتوزيع الأرباح ونشاط الإحالة مباشرة من خلال شبكة البلوكشين.',
+                'security.p2p': 'ند لند (P2P)',
+                'security.p2pDesc': 'لا يوجد وسطاء. جميع التفاعلات المالية تتم مباشرة بين المستخدمين والعقود الذكية.',
+                'security.viewContract': 'عرض العقد على BSC Scan',
+                'security.viewAudit': 'تدقيق HazeCrypto',
+                'security.viewAudit2': 'تدقيق DAppsAuditPro',
+                'join.title': 'كيفية الانضمام',
+                'join.step1': 'قم بإعداد محفظة تشفير (مثل SafePal) تدعم BNB سمارت تشين.',
+                'join.step2': 'قم بتمويلها بما لا يقل عن 10 USDT + القليل من BNB لرسوم الغاز.',
+                'join.step3': 'افتح متصفح DApps، ثم الصق الرابط التالي:',
+                'join.copy': 'نسخ',
+                'join.step4': 'قم بتوصيل محفظتك بكلستر ييلد.',
+                'join.step5': 'اختر خطة، أدخل مبلغ الاستثمار، وقم بالتأكيد.',
+                'join.step6': 'ستظهر الأرباح اليومية تلقائيًا في لوحة التحكم الخاصة بك.',
+                'join.contactBot': 'اتصل ببوت التسجيل',
+                'media.title': 'التغطية الإعلامية',
+                'media.subtitle': 'لقد تم عرضنا في وسائل الإعلام العالمية للتشفير!',
+                'media.bitcoinInsider': 'Bitcoin Insider',
+                'media.bitcoinInsiderQuote': '"منصة DeFi المدعومة بالذكاء الاصطناعي التي ترسل USDT يوميًا."',
+                'media.bitTimes': 'The Bit Times',
+                'media.bitTimesQuote': '"دخل سلبي بدون KYC، بدون تداول، فقط مع USDT."',
+                'media.techAnnouncer': 'Tech Announcer',
+                'media.techAnnouncerQuote': '"حل الذكاء الاصطناعي للدخل السلبي في التشفير."',
+                'media.cryptoTimes': 'Crypto Times',
+                'media.cryptoTimesQuote': '"منصة تعتمد على الذكاء الاصطناعي لأرباح التشفير التلقائية."',
+                'media.readArticle': 'قراءة المقال',
+                'faq.title': 'الأسئلة الشائعة',
+                'faq.q1': 'ما هو الحد الأدنى للاستثمار؟',
+                'faq.a1': 'الحد الأدنى 10 USDT + القليل من BNB لرسوم الشبكة.',
+                'faq.q2': 'هل هناك حد أقصى؟',
+                'faq.a2': 'لا. يمكن تعديل الاستثمار وفقًا لاستراتيجيتك.',
+                'faq.q3': 'كيف يتم حساب الربح اليومي؟',
+                'faq.a3': 'يتم حساب الربح تلقائيًا بناءً على الخطة ورأس المال من خلال نظام الذكاء الاصطناعي.',
+                'faq.q4': 'هل يمكن أن يكون لدي عدة خطط نشطة؟',
+                'faq.a4': 'نعم. كل خطة تعمل بشكل مستقل.',
+                'faq.q5': 'كيف يعمل نظام الإحالة؟',
+                'faq.a5': 'يتم منح المكافآت من نتائج الربح اليومي لفريقك، حتى 17 مستوى.',
+                'faq.q6': 'هل هذه المنصة آمنة؟',
+                'faq.a6': 'تم تدقيق كلستر ييلد بدقة ويستخدم عقودًا ذكية موثقة.',
+                'faq.otherQuestion': 'هل لديك سؤال آخر؟',
+                'faq.askBelow': 'اسأل أدناه:',
+                'faq.writeQuestion': 'اكتب سؤالك هنا...',
+                'faq.sendWhatsApp': 'إرسال عبر WhatsApp',
+                'community.title': 'المجتمع والتعليم',
+                'community.subtitle': 'انضم إلى آلاف المستثمرين الآخرين واحصل على معلومات تعليمية منتظمة!',
+                'community.whatsappGroup': 'مجموعة WhatsApp #5',
+                'community.telegramChannel': 'قناة المعلومات',
+                'support.title': 'الدعم والاتصال',
+                'support.subtitle': 'نحن على استعداد للمساعدة!',
+                'support.whatsapp': 'دعم WhatsApp',
+                'support.telegram': 'دعم Telegram',
+                'footer.message': 'حقق مستقبلك المالي مع نظام آلي يعمل دون كلل.<br>خطوة صغيرة اليوم، دخل سلبي للأبد.',
+                'footer.rights': 'جميع الحقوق محفوظة'
+            }
+        };
+
+        // Language data
+        const languages = {
+            'id': {
+                name: 'Indonesia',
+                flag: 'https://flagcdn.com/w20/id.png',
+                dir: 'ltr'
+            },
+            'en': {
+                name: 'English',
+                flag: 'https://flagcdn.com/w20/gb.png',
+                dir: 'ltr'
+            },
+            'fr': {
+                name: 'Français',
+                flag: 'https://flagcdn.com/w20/fr.png',
+                dir: 'ltr'
+            },
+            'ar': {
+                name: 'العربية',
+                flag: 'https://flagcdn.com/w20/sa.png',
+                dir: 'rtl'
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'id';
+
+        // Function to change language
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update button
+            const btnImg = document.querySelector('.language-btn img');
+            const btnText = document.querySelector('.language-btn span');
+            
+            btnImg.src = languages[lang].flag;
+            btnText.textContent = languages[lang].name;
+            
+            // Update HTML direction for RTL languages
+            document.documentElement.dir = languages[lang].dir;
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else if (element.hasAttribute('data-placeholder')) {
+                        element.setAttribute('placeholder', translations[lang][key]);
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update select options
+            const planSelect = document.getElementById('plan-select');
+            if (planSelect) {
+                for (let i = 0; i < planSelect.options.length; i++) {
+                    const option = planSelect.options[i];
+                    if (option.hasAttribute('data-key')) {
+                        const key = option.getAttribute('data-key');
+                        if (translations[lang][key]) {
+                            option.text = translations[lang][key] + (option.text.includes('(') ? option.text.substring(option.text.indexOf('(')) : '');
+                        }
+                    }
+                }
+            }
+            
+            // Close dropdown
+            document.getElementById('language-dropdown').classList.remove('show');
+            
+            // Store language preference in localStorage
+            localStorage.setItem('clusterYieldLanguage', lang);
+        }
+
+        // Initialize language
+        function initLanguage() {
+            // Check for saved language preference
+            const savedLang = localStorage.getItem('clusterYieldLanguage');
+            if (savedLang && translations[savedLang]) {
+                changeLanguage(savedLang);
+            } else {
+                // Default to browser language if available
+                const browserLang = navigator.language.substring(0, 2);
+                if (translations[browserLang]) {
+                    changeLanguage(browserLang);
+                } else {
+                    changeLanguage('id'); // Fallback to Indonesian
+                }
+            }
+        }
+
         // Plan minimum values
         const planMinimums = {
             'beginner': 10,
@@ -1321,7 +1966,7 @@
             const totalProfitDisplay = document.getElementById('total-profit');
             
             if (!planSelect.value) {
-                alert('Silakan pilih plan investasi terlebih dahulu!');
+                alert(translations[currentLanguage]['calculator.selectPlanAlert'] || 'Please select an investment plan first!');
                 return;
             }
             
@@ -1329,15 +1974,15 @@
             const minAmount = planMinimums[selectedPlan];
             
             amountInput.min = minAmount;
-            amountInput.placeholder = `Min. ${minAmount} USDT`;
+            amountInput.placeholder = (translations[currentLanguage]['calculator.minAmount'] || 'Min.') + ` ${minAmount} USDT`;
             
             const amount = parseFloat(amountInput.value);
             
             if (isNaN(amount)) {
-                alert('Masukkan jumlah modal yang valid!');
+                alert(translations[currentLanguage]['calculator.validAmount'] || 'Please enter a valid investment amount!');
                 return;
             } else if (amount < minAmount) {
-                alert(`Minimum investasi untuk plan ini adalah ${minAmount} USDT`);
+                alert((translations[currentLanguage]['calculator.minimumInvestment'] || 'Minimum investment for this plan is') + ` ${minAmount} USDT`);
                 return;
             }
             
@@ -1347,8 +1992,8 @@
             const dailyProfit = (amount * dailyPercentage / 100).toFixed(2);
             const totalProfit = (dailyProfit * duration).toFixed(2);
             
-            dailyProfitInput.value = `${dailyPercentage}% = ${dailyProfit} USDT/hari`;
-            totalProfitDisplay.textContent = `${totalProfit} USDT (${duration} hari)`;
+            dailyProfitInput.value = `${dailyPercentage}% = ${dailyProfit} USDT/` + (translations[currentLanguage]['plans.day'] || 'day');
+            totalProfitDisplay.textContent = `${totalProfit} USDT (${duration} ` + (translations[currentLanguage]['plans.days'] || 'days') + `)`;
         }
         
         // Copy referral link function
@@ -1361,21 +2006,21 @@
             // Show feedback to user
             const copyButton = refLink.nextElementSibling;
             const originalText = copyButton.innerHTML;
-            copyButton.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
+            copyButton.innerHTML = '<i class="fas fa-check"></i> ' + (translations[currentLanguage]['join.copied'] || 'Copied!');
             
             setTimeout(() => {
                 copyButton.innerHTML = originalText;
             }, 2000);
             
-            // Optional: Show alert
-            alert('Link referral telah disalin ke clipboard!');
+            // Show alert
+            alert(translations[currentLanguage]['join.linkCopied'] || 'Referral link has been copied to clipboard!');
         }
         
         // WhatsApp question function
         function sendWhatsAppMessage() {
             const question = document.getElementById('user-question').value;
             if (question.trim() === '') {
-                alert('Silakan tulis pertanyaan Anda terlebih dahulu.');
+                alert(translations[currentLanguage]['faq.writeQuestionFirst'] || 'Please write your question first.');
                 return;
             }
             
@@ -1390,6 +2035,29 @@
         
         document.getElementById('close-menu').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.remove('active');
+        });
+        
+        // Language selector functionality
+        const languageBtn = document.querySelector('.language-btn');
+        const languageDropdown = document.getElementById('language-dropdown');
+        
+        languageBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            languageDropdown.classList.toggle('show');
+        });
+        
+        // Close language dropdown when clicking outside
+        document.addEventListener('click', function() {
+            languageDropdown.classList.remove('show');
+        });
+        
+        // Language selection
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                changeLanguage(lang);
+            });
         });
         
         // Smooth scrolling for anchor links
@@ -1410,6 +2078,11 @@
                 }
             });
         });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initLanguage();
+        });
     </script>
 </body>
-                                                                        </html>
+    </html>
